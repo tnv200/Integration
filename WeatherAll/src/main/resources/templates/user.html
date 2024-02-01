@@ -285,7 +285,7 @@ https://templatemo.com/tm-590-topic-listing
 	
 }
 
-.weather-container1 ,.weather-container3 ,.weather-container4{
+.weather-container1 {
   display: none; /* Hide the container by default */
   flex-wrap: wrap; /* Allow boxes to wrap to the next line on smaller screens */
   justify-content: space-around;
@@ -422,7 +422,7 @@ https://templatemo.com/tm-590-topic-listing
 }
 
 .weather-container2 {
-  display: none; /* Hide the container by default */
+  display: flex;
   flex-wrap: wrap; /* Allow boxes to wrap to the next line on smaller screens */
   justify-content: space-around;
   max-width: 1050px;
@@ -494,6 +494,180 @@ https://templatemo.com/tm-590-topic-listing
   height: auto;
   margin-bottom: 5px;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600&display=swap');
+
+:root {
+  --firaSans: 'Fira Sans', sans-serif;
+}
+
+.card-hover {
+  width: 360px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+}
+
+.card-hover:hover .card-hover__content {
+  background-color: #DEE8C2;
+  bottom: 100%;
+  transform: translateY(100%);
+  padding: 50px 60px;
+  transition: all 0.35s cubic-bezier(.1, .72, .4, .97);
+}
+
+.card-hover:hover .card-hover__link {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition: all 0.3s 0.35s cubic-bezier(.1, .72, .4, .97);
+}
+
+.card-hover:hover img {
+  transform: scale(1);
+  transition: 0.35s 0.1s transform cubic-bezier(.1, .72, .4, .97);
+}
+
+.card-hover__content {
+  width: 100%;
+  text-align: center;
+  background-color: #86B971;
+  padding: 0 60px 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(0);
+  transition: all 0.35s 0.35s cubic-bezier(.1, .72, .4, .97);
+  will-change: bottom, background-color, transform, padding;
+  z-index: 1;
+}
+
+.card-hover__content::before,
+.card-hover__content::after {
+  content: '';
+  width: 100%;
+  height: 120px;
+  background-color: inherit;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+}
+
+.card-hover__content::before {
+  top: -80px;
+  clip-path: ellipse(60% 80px at bottom center);
+}
+
+.card-hover__content::after {
+  bottom: -80px;
+  clip-path: ellipse(60% 80px at top center);
+}
+
+.card-hover__title {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+
+.card-hover__title span {
+  color: #2d7f0b;
+}
+
+.card-hover__link {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-decoration: none;
+  color: #2d7f0b;
+  opacity: 0;
+  padding: 10px;
+  transition: all 0.35s;
+}
+
+.card-hover__link:hover svg {
+  transform: translateX(4px);
+}
+
+.card-hover__link svg {
+  width: 18px;
+  margin-left: 4px;
+  transition: transform 0.3s;
+}
+
+.card-hover__extra {
+  height: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #86b971;
+  padding: 80px;
+  bottom: 0;
+  z-index: 0;
+  color: #dee8c2;
+  transform: translateY(100%);
+  will-change: transform;
+  transition: transform 0.35s;
+}
+
+.card-hover__extra span {
+  color: #2d7f0b;
+}
+
+.card-hover img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  transform: scale(1.2);
+  transition: 0.35s 0.35s transform cubic-bezier(.1, .72, .4, .97);
+}
+
+.weather-container1 {
+    display: flex;
+    justify-content: space-around; /* Adjust as needed */
+    align-items: flex-start; /* Align items to the start of the flex container */
+}
+
+.card-hover {
+    width: 300px; /* Adjust width as needed */
+    margin: 10px; /* Adjust margin as needed for spacing */
+}
+
+.real-time-section {
+  display: flex;
+  justify-content: space-between; /* Adjust as needed */
+}
+
+.outer4 {
+  display: flex;
+  justify-content: space-between; /* Adjust as needed */
+  flex-wrap: wrap;
+}
+
+.card-hover {
+  flex: 0 1 30%; /* Adjust the width of each card as needed */
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+
+
+
+
+
+
 /*style for clothing cards */
 
 </style>
@@ -506,17 +680,11 @@ https://templatemo.com/tm-590-topic-listing
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="/user_dashboard">
-                      <!--  <i class="bi-back"></i> -->
+                      
                       <img class = "Fablelogo" src="/user_dashboard/images/Logo.png" alt="Weather Fable Logo" width="40" height="40">
                         <span>Weather Fable</span>
                     </a>
-                    <!-- <a href="Homepage.html">
-                        <div class="logo-container">
-                            <a href="Homepage.html" class="logo-link">
-                                <img src="./images/Logo.png" alt="Your Logo" class="logo-image">
-                                <span class="logo-text">Weather Fable</span>
-                            </a> -->
-
+                  
                     <div class="d-lg-none ms-auto me-4">
                         <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
                     </div>
@@ -525,8 +693,8 @@ https://templatemo.com/tm-590-topic-listing
                         <span class="navbar-toggler-icon"></span>
                     </button>
     
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                    <div class="collapse navbar-collapse" id="navbarNav" >
+                        <ul class="navbar-nav ms-lg-5 me-lg-auto justify-content-between">
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="#section_1">Home</a>
                             </li>
@@ -534,81 +702,57 @@ https://templatemo.com/tm-590-topic-listing
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="#about">About</a>
                             </li>
-    
-                            <li class="nav-item">
+
+                           
+                            <li class="nav-item reduce-space"  >
                                 <a class="nav-link click-scroll" href="#section_3">How it works</a>
                             </li>
 
-                            <li class="nav-item">
+                            <li class="nav-item reduce-space" >
                                 <a class="nav-link click-scroll" href="#section_4">FAQs</a>
                             </li>
+                             <li class="nav-item dropdown reduce-space1"  >
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Recommendations</a>
+
+                              <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                  <li><a class="dropdown-item" href="#food">Food</a></li>
+                                  <li><a class="dropdown-item" href="#clothing">Clothing</a></li>
+                                  <li><a class="dropdown-item" href="#outdoor">Outdoor Activities</a></li>
+                                  <li><a class="dropdown-item" href="#travel">Travel Hacks</a></li>
+                              </ul>
+                          </li>
     
-                            <!-- <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_5">Contact</a>
-                            </li> -->
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Recommendations</a>
-
-                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#food">Food</a></li>
-                                    <li><a class="dropdown-item" href="#clothing">Clothing</a></li>
-                                    <li><a class="dropdown-item" href="#outdoor">Outdoor Activities</a></li>
-                                    <li><a class="dropdown-item" href="#travel">Travel & Commute</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                       <!-- <div class="d-none d-lg-block">
-                            <a href="#top" class="navbar-icon bi-person smoothscroll" id="profile-dropdown"></a>
-                            <div class="dropdown" id="profile-dropdown-menu">
-                                <div class="dropdown-menu" aria-labelledby="profile-dropdown">
-                                    <a class="dropdown-item" href="#user-profile">User Profile</a>
-                                    <a class="dropdown-item" href="#switch-account">Switch Account</a>
-                                    <a class="dropdown-item" href="#api-calls">API Calls</a>
-                                    <a class="dropdown-item" href="#recent-locations">Recent Locations</a>
-                                    <a class="dropdown-item" href="#settings">Settings & Preferences</a>
-                                    <a class="dropdown-item" href="#sign-out">Sign Out</a>
-                                    <a class="dropdown-item" href="#help-support">Help & Support</a>
-                                    <a class="dropdown-item" href="#feedback">Send Feedback</a>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="d-none d-lg-block">
-                            <div class="dropdown" id="dropdowni">
-                                <i class="fas fa-user-circle" id="dropdownMenuLink"></i> 
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/user_profile">User Profile</a>
-                                    <a class="dropdown-item" href="#switch-account">Switch Account</a>
-                                    <a class="dropdown-item" href="#api-calls">API Calls</a>
-                                    <a class="dropdown-item" href="#recent-locations">Recent Locations</a>
-                                    <a class="dropdown-item" href="#settings">Settings & Preferences</a>
-                                    <a class="dropdown-item" href="/home">Sign Out</a>
-                                    <a class="dropdown-item" href="#help-support">Help & Support</a>
-                                    <a class="dropdown-item" href="#feedback">Send Feedback</a>
-                                </div>
-                            </div>
-                        </div> 
-                        
                             
-                            <!-- <a href="#top" class="navbar-icon bi-person smoothscroll" id="profile-dropdown"></a>
-                            <div class="dropdown" id="profile-dropdown-menu" style="display: none;">
-                                <div class="dropdown-menu" aria-labelledby="profile-dropdown">
-                                    <a class="dropdown-item" href="#user-profile">User Profile</a>
-                                    <a class="dropdown-item" href="#switch-account">Switch Account</a>
-                                    <a class="dropdown-item" href="#api-calls">API Calls</a>
+
+                            
+                        </ul>
+                       
+                        <div class="d-none d-lg-block">
+        <div class="dropdown" id="dropdowni">
+            <i class="fas fa-user-circle" id="dropdownMenuLink"></i>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/view_userprofile" >User Profile</a>
+                                    <a class="dropdown-item" href="/comlogin" id="switch-account-link">Switch Account</a>
+                                   <!-- <a class="dropdown-item" href="#api-calls">API Calls</a>
                                     <a class="dropdown-item" href="#recent-locations">Recent Locations</a>
-                                    <a class="dropdown-item" href="#settings">Settings & Preferences</a>
-                                    <a class="dropdown-item" href="#sign-out">Sign Out</a>
-                                    <a class="dropdown-item" href="#help-support">Help & Support</a>
-                                    <a class="dropdown-item" href="#feedback">Send Feedback</a>
-                                </div>
-                            </div> --> 
+                                     <a class="dropdown-item" href="#help-support">Help & Support</a>  
+                                    <a class="dropdown-item" href="#settings">Settings & Preferences</a> -->
+                                    <a class="dropdown-item" href="/home" id="sign-out-link">Sign Out</a>
+                                    <a class="dropdown-item" href="/feedback" id="sendfeedback-link">Send Feedback</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- changes done   "/view_userprofile -->
+
+
+        <!-- changes done -->                 
+                         
                         </div>
 
                        
-                        <!-- <div class="d-none d-lg-block">
-                            <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-                        </div> -->
+                      
                     </div>
                 </div>
             </nav>
@@ -631,9 +775,8 @@ https://templatemo.com/tm-590-topic-listing
 
                                     <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Enter the Location" aria-label="Search">
                                     <input name="keyword1" type="search1" class="form-control1" id="keyword1" placeholder="Enter the State" aria-label="Search" style="border: none; outline: none;">
-							<!--  var searchInput = document.querySelector('.form-control'); 
-                                    <button type="submit" class="form-control">Search</button> , <img src="/images/search.png" alt="Search Icon"> -->
-                                    <button type="button" class="form-control" id = "search-button" onclick="showWeatherData()">Search</button>
+							        <button type="button" class="form-control" id = "search-button" onclick="showWeatherData()">Search</button>
+							        
                                   	
                                 </div>
                             </form>
@@ -675,31 +818,7 @@ https://templatemo.com/tm-590-topic-listing
                 
             </section>
             
-            
- <!-- changes  -->         
-
-<!-- changes  -->       
-
-
-            <!-- <section id="about" class="bg-light p-5">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-lg-8 mx-auto text-center">
-                      <h2 class="display-4">Welcome to Weather Fable</h2>
-                      <p class="lead">
-                        Weather Fable is your go-to platform for personalized weather insights and recommendations. Get real-time weather updates and tailored suggestions for clothing, food, travel, and outdoor activities based on current conditions.
-                      </p>
-                      <p>
-                        Join us and experience a seamless way to plan your day, staying ahead of changing weather conditions!
-                      </p>
-                      <a href="#signup" class="btn btn-primary btn-lg">Sign Up Now</a>
-                    </div>
-                  </div>
-                </div>
-              </section> -->
-
-
-              <!-- About 1 - Bootstrap Brain Component -->
+ 
 <section id="about" class="py-3 py-md-5">
     <div class="container">
       <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
@@ -747,393 +866,227 @@ https://templatemo.com/tm-590-topic-listing
       </div>
     </div>
   </section>
+
+
+
+
+  <section id="food" class="real-time-section">
+    <div class="container" >
+      <h2 class = "rhead" >Food Recommendations</h2>
+      
+       <div class="outer1">
+
+
+<div id="weatherContainer1" class="weather-container1">
+
+<div class="card-hover">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Discover delicious <span>vegetarian</span> option now!
+</h3>  
+<h6 id="veg" style="color: rgb(15, 105, 113);"></h6>
+
+</div>
+<img src="https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60" alt="">
+</div>
+
+<div class="card-hover">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Discover delicious <span>NonVeg food</span> option now!
+</h3>  
+<h6 id="nonveg" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+</div>
+
+<div class="card-hover">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Discover delicious <span>Side food</span> option now!
+</h3>  
+<h6 id="liquid" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://plus.unsplash.com/premium_photo-1663853294187-34987e26d012?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+</div>
+
+
+</div>
+</div>
+</div>
+</section>
+  
+  <section id="clothing" class="real-time-section">
+    <div class="container">
+      <h2 class = "rhead">Clothing Suggestions</h2>
+     
+       <div class="outer1">
+
+
+<div id="weatherContainer2" class="weather-container2">
+
+<div class="card-hover">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Explore trendy <span>Clothing</span> recommendations now!
+</h3>  
+<h6 id="tops" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHRvcCUyMHdlYXIlMjBjbG90aGVzfGVufDB8fDB8fHww" alt="Clothing Recommendations">
+</div>
+
+
+<div class="card-hover">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Explore trendy <span>Clothing</span> recommendations now!
+</h3>  
+<h6 id="bottom" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1565084888279-aca607ecce0c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clothing Recommendations">
+</div>
+
+<div class="card-hover">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Explore trendy <span>Clothing</span> recommendations now!
+</h3>  
+<h6 id="accessories" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clothing Recommendations">
+</div>
+
+<div class="card-hover">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Explore trendy <span>Clothing</span> recommendations now!
+</h3>  
+<h6 id="footwear" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1462927114214-6956d2fddd4e?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clothing Recommendations">
+</div>
+
+<div class="card-hover">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Explore trendy <span>Clothing</span> recommendations now!
+</h3>  
+<h6 id="pullovers" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1598915850252-fb07ad1e6768?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clothing Recommendations">
+</div>
+
+
+
+
+
+</div>
+</div>
+    </div>
+  </section>
+  
+  <section id="outdoor" class="real-time-section" style="display: flex; justify-content: space-between;">
+    <div class="container" style="width: 100%;">
+      <h2 class = "rhead">Outdoor Activities</h2>
+      
+      <div class="outer4" style="display: flex; width: 100%;">
+
+
+<div id="weatherContainer4" class="weather-container4" style="display: flex; width: 100%;">
+
+<div class="card-hover" style="flex: 1; ">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Highly Recommended <span>Outdoor Activity</span> 
+</h3>  
+<h6 id="out_h.reco" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1593504197189-c0dafb6f2e92?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Outdoor Recommendations" >
+</div>
+<div class="card-hover" style="flex: 1; ">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Recommended <span>Outdoor Activity</span> 
+</h3>  
+<h6 id="out_reco" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Outdoor Recommendations" >
+</div>
+<div class="card-hover" style="flex: 1; ">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Recommended <span>Outdoor Activity</span> with Limitations
+</h3>  
+<h6 id="out_limit" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1495539406979-bf61750d38ad?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Outdoor Recommendations" >
+</div>
+<div class="card-hover" style="flex: 1;">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+ <span>Outdoor Activities</span> to Avoid 
+</h3>  
+<h6 id="out_notreco" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1527610276295-f4c1b38decc5?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Outdoor Recommendations" >
+</div>
+</div>
+</div>
+</div>
+  </section>
+  
+<section id="travel" class="real-time-section" style="display: flex; justify-content: space-between;">
+    <div class="container" style=" width: 1800px;">
+      <h2 class = "rhead">Travel Hacks</h2>
+  
+     <div class="outer3" style="  width: 100%;">
+<div id="weatherContainer3" class="weather-container3" style="display: flex;  width: 100%;">
+
+
+<div class="card-hover" style="flex: 1; ">
+<div class="card-hover__content" id="weather1Box1" >
+<h3 class="card-hover__title">
+Highly Recommended <span>Expedition Advice</span> 
+</h3>  
+<h6 id="travel_h.reco" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="travel Recommendations">
+</div>
+<div class="card-hover" style="flex: 1; ">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Recommended <span>Expedition Advice</span> 
+</h3>  
+<h6 id="travel_reco" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1522850403397-b0c8f2f75451?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="travel Recommendations">
+</div>
+<div class="card-hover" style="flex: 1; "> 
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+Recommended <span>Expedition Advice</span> with Limitations
+</h3>  
+<h6 id="travel_limit" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1603039548092-fff996c2441c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D" alt="travel Recommendations">
+</div>
+<div class="card-hover" style="flex: 1;">
+<div class="card-hover__content" id="weather1Box1">
+<h3 class="card-hover__title">
+ <span>Travel Hacks</span> to Avoid 
+</h3>  
+<h6 id="travel_notreco" style="color: rgb(15, 105, 113);"></h6>
+</div>
+<img src="https://images.unsplash.com/photo-1513682121497-80211f36a7d3?q=80&w=1588&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="travel Recommendations">
+</div>
+
+
+</div>
+</div>
+    </div>
+  </section>
               
 
-
-            <!-- <section class="featured-section">
-                <div class="container">
-                    <div class="row justify-content-center">
-
-                        <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-                            <div class="custom-block bg-white shadow-lg">
-                                <a href="topics-detail.html">
-                                    <div class="d-flex">
-                                        <div>
-                                            <h5 class="mb-2">Web Design</h5>
-
-                                            <p class="mb-0">When you search for free CSS templates, you will notice that TemplateMo is one of the best websites.</p>
-                                        </div>
-
-                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
-                                    </div>
-
-                                    <img src="images/topics/undraw_Remote_design_team_re_urdx.png" class="custom-block-image img-fluid" alt="">
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12">
-                            <div class="custom-block custom-block-overlay">
-                                <div class="d-flex flex-column h-100">
-                                    <img src="images/businesswoman-using-tablet-analysis.jpg" class="custom-block-image img-fluid" alt="">
-
-                                    <div class="custom-block-overlay-text d-flex">
-                                        <div>
-                                            <h5 class="text-white mb-2">Finance</h5>
-
-                                            <p class="text-white">Topic Listing Template includes homepage, listing page, detail page, and contact page. You can feel free to edit and adapt for your CMS requirements.</p>
-
-                                            <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
-                                        </div>
-
-                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
-                                    </div>
-
-                                    <div class="social-share d-flex">
-                                        <p class="text-white me-4">Share:</p>
-
-                                        <ul class="social-icon">
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-twitter"></a>
-                                            </li>
-
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-facebook"></a>
-                                            </li>Designms-auto"></a>
-                                    </div>
-
-                                    <div class="section-overlay"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section> -->
-
-
-            <!-- <section class="explore-section section-padding" id="section_2">
-                <div class="container">
-
-                        <div class="col-12 text-center">
-                            <h2 class="mb-4">Browse Topics</h1> -->
-                        <!-- </div>
-
-                    </div>
-                </div>
-
-                <div class="container-fluid">
-                    <div class="row">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="true">Design</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="marketing-tab" data-bs-toggle="tab" data-bs-target="#marketing-tab-pane" type="button" role="tab" aria-controls="marketing-tab-pane" aria-selected="false">Marketing</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="finance-tab" data-bs-toggle="tab" data-bs-target="#finance-tab-pane" type="button" role="tab" aria-controls="finance-tab-pane" aria-selected="false">Finance</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane" type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">Music</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="education-tab" data-bs-toggle="tab" data-bs-target="#education-tab-pane" type="button" role="tab" aria-controls="education-tab-pane" aria-selected="false">Education</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-12">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Web Design</h5>
-
-                                                            <p class="mb-0">Topic Listing Template based on Bootstrap 5</p>
-                                                        </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Remote_design_team_re_urdx.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Graphic</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">75</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Redesign_feedback_re_jvm0.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Logo Design</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">100</span>
-                                                    </div>
-
-                                                    <img src="images/topics/colleagues-working-cozy-office-medium-shot.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel" aria-labelledby="marketing-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Advertising</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">30</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_online_ad_re_ol62.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Video Content</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">65</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_Group_video_re_btu7.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-md-6 col-12">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Viral Tweet</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">50</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_viral_tweet_gndb.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                  </div>
-
-                                <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab" tabindex="0">   <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Investment</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-finance rounded-pill ms-auto">30</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Finance_re_gnv2.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="custom-block custom-block-overlay">
-                                                <div class="d-flex flex-column h-100">
-                                                    <img src="images/businesswoman-using-tablet-analysis-graph-company-finance-strategy-statistics-success-concept-planning-future-office-room.jpg" class="custom-block-image img-fluid" alt="">
-
-                                                    <div class="custom-block-overlay-text d-flex">
-                                                        <div>
-                                                            <h5 class="text-white mb-2">Finance</h5>
-
-                                                            <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis</p>
-
-                                                            <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
-                                                        </div>
-
-                                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
-                                                    </div>
-
-                                                    <div class="social-share d-flex">
-                                                        <p class="text-white me-4">Share:</p>
-
-                                                        <ul class="social-icon">
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-twitter"></a>
-                                                            </li>
-
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-facebook"></a>
-                                                            </li>
-
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-pinterest"></a>
-                                                            </li>
-                                                        </ul>
-
-                                                        <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
-                                                    </div>
-
-                                                    <div class="section-overlay"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Composing Song</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Compose_music_re_wpiw.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Online Music</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_happy_music_g6wc.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Podcast</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">20</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Podcast_audience_re_4i5q.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="education-tab-pane" role="tabpanel" aria-labelledby="education-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Graduation</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-education rounded-pill ms-auto">80</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Graduation_re_gthn.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Educator</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-education rounded-pill ms-auto">75</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Educator_re_ju47.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
-                </div>
-            </section> -->
 
 
             <section class="timeline-section section-padding" id="section_3">
@@ -1186,12 +1139,7 @@ https://templatemo.com/tm-590-topic-listing
                             </div>
                         </div>
 
-                        <!-- <div class="col-12 text-center mt-5">
-                            <p class="text-white">
-                                Want to learn more?
-                                <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
-                            </p>
-                        </div> -->
+                   
                     </div>
                 </div>
             </section>
@@ -1258,222 +1206,9 @@ https://templatemo.com/tm-590-topic-listing
             </section>
 
 
-            <!-- <section class="contact-section section-padding section-bg" id="section_5">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-12 col-12 text-center">
-                            <h2 class="mb-5">Get in touch</h2>
-                        </div>
-
-                        <div class="col-lg-5 col-12 mb-4 mb-lg-0">
-                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.065641062665!2d-122.4230416990949!3d37.80335401520422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858127459fabad%3A0x808ba520e5e9edb7!2sFrancisco%20Park!5e1!3m2!1sen!2sth!4v1684340239744!5m2!1sen!2sth" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 col-12 mb-3 mb-lg- mb-md-0 ms-auto">
-                            <h4 class="mb-3">Head office</h4>
-
-                            <p>Bay St &amp;, Larkin St, San Francisco, CA 94109, United States</p>
-
-                            <hr>
-
-                            <p class="d-flex align-items-center mb-1">
-                                <span class="me-2">Phone</span>
-
-                                <a href="tel: 305-240-9671" class="site-footer-link">
-                                    305-240-9671
-                                </a>
-                            </p>
-
-                            <p class="d-flex align-items-center">
-                                <span class="me-2">Email</span>
-
-                                <a href="mailto:info@company.com" class="site-footer-link">
-                                    info@company.com
-                                </a>
-                            </p>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 col-12 mx-auto">
-                            <h4 class="mb-3">Dubai office</h4>
-
-                            <p>Burj Park, Downtown Dubai, United Arab Emirates</p>
-
-                            <hr>
-
-                            <p class="d-flex align-items-center mb-1">
-                                <span class="me-2">Phone</span>
-
-                                <a href="tel: 110-220-3400" class="site-footer-link">
-                                    110-220-3400
-                                </a>
-                            </p>
-
-                            <p class="d-flex align-items-center">
-                                <span class="me-2">Email</span>
-
-                                <a href="mailto:info@company.com" class="site-footer-link">
-                                    info@company.com
-                                </a>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </section> -->
-
-           <section id="food" class="real-time-section">
-                <div class="container">
-                  <h2 class = "rhead">Food Recommendations</h2>
-                  <img class = "foodimg1" src="/user_dashboard/images/recommendations/foodimg1.png" alt="foodimg" >
-                   <div class="outer1">
-<p class="weather-info1" id="weather-info1"></p>    
-     
-<div id="weatherContainer1" class="weather-container1">
-
-    <div class="weather-box1" id="weather1Box1">
-        <h2>Vegetarian food</h2>
-        <img src="/user_dashboard/images/recommendations/1veg.jpg" alt="Temperature Image">
-        <p id="veg"></p>
-    </div>
-    
-    <div class="weather-box1" id="weather1Box2">
-        <h2>NonVeg food</h2>
-        <img src="/user_dashboard/images/recommendations/1nonveg.jpg" alt="Temperature Image">
-        <p id="nonveg"></p>
-    </div>
-    
-    <div class="weather-box1" id="weather1Box3">
-        <h2>Liquid food</h2>
-        <img src="/user_dashboard/images/recommendations/1liquid.jpg" alt="Temperature Image">
-        <p id="liquid"></p>
-    </div>
-    
-</div>
-</div>
-                </div>
-              </section>
-              
-              <section id="clothing" class="real-time-section">
-                <div class="container">
-                  <h2 class = "rhead">Clothing Suggestions</h2>
-                  <img class = "clothimg" src="/user_dashboard/images/recommendations/clothimg.jpg" alt="travellimg" >
-                   <div class="outer1">
-<p class="weather-info2" id="weather-info2"></p>    
-     
-<div id="weatherContainer2" class="weather-container2">
-
-    <div class="weather-box2" id="weather2Box1">
-        <h2>Tops</h2>
-        <img src="/user_dashboard/images/recommendations/2tops.jpg" alt="Temperature Image">
-        <p id="tops"></p>
-    </div>
-    
-    <div class="weather-box2" id="weather2Box2">
-        <h2>Bottom wear</h2>
-        <img src="/user_dashboard/images/recommendations/2bottom.jpg" alt="Temperature Image">
-        <p id="bottom"></p>
-    </div>
-    
-    <div class="weather-box2" id="weather2Box3">
-        <h2>Accessories</h2>
-        <img src="/user_dashboard/images/recommendations/2access.jpg" alt="Temperature Image">
-        <p id="accessories"></p>
-    </div>
-    
-    <div class="weather-box2" id="weather2Box4">
-        <h2>Footwear</h2>
-        <img src="/user_dashboard/images/recommendations/2footwear.jpg" alt="Temperature Image">
-        <p id="footwear"></p>
-    </div>
-    
-     <div class="weather-box2" id="weather2Box4">
-        <h2>Pullovers</h2>
-        <img src="/user_dashboard/images/recommendations/2pullover.jpg" alt="Temperature Image">
-        <p id="pullovers"></p>
-    </div>
    
-    
-</div>
-</div>
-                </div>
-              </section>
-              
-              <section id="outdoor" class="real-time-section">
-                <div class="container">
-                  <h2 class = "rhead">Outdoor Activities</h2>
-                  <img class = "outdoorimg" src="/user_dashboard/images/recommendations/outdoorimg.png" alt="outdoorimg" >
-                  <div class="outer4">
-<p class="weather-info4" id="weather-info4"></p>    
-     
-<div id="weatherContainer4" class="weather-container4">
 
-    <div class="weather-box4" id="weather4Box1">
-        <h2>Highly Recommended</h2>
-        <img src="/user_dashboard/images/recommendations/temperature.png" alt="Temperature Image">
-        <p id="out_h.reco"></p>
-    </div>
-    
-    <div class="weather-box4" id="weather4Box2">
-        <h2>Recommended</h2>
-        <img src="/user_dashboard/images/recommendations/hum.png" alt="Temperature Image">
-        <p id="out_reco"></p>
-    </div>
-    
-    <div class="weather-box4" id="weather4Box3">
-        <h2>Limited</h2>
-        <img src="/user_dashboard/images/recommendations/wind.png" alt="Temperature Image">
-        <p id="out_limit"></p>
-    </div>
-    
-    <div class="weather-box4" id="weather4Box4">
-        <h2> Not Recommended</h2>
-        <img src="/user_dashboard/images/recommendations/clouds.png" alt="Temperature Image">
-        <p id="out_notreco"></p>
-    </div>
-    
-</div>
-</div>
-                </div>
-              </section>
-              
-              <section id="travel" class="real-time-section">
-                <div class="container">
-                  <h2 class = "rhead">Travel / Commute Tips</h2>
-                  <img class = "travellimg" src="/user_dashboard/images/recommendations/travelimg.png" alt="travellimg" >
-                 <div class="outer3">
-<p class="weather-info3" id="weather-info3"></p>    
-     
-<div id="weatherContainer3" class="weather-container3">
-
-    <div class="weather-box3" id="weather3Box1">
-        <h2>Highly Recommended</h2>
-        <img src="/user_dashboard/images/recommendations/3travel1.jpg" alt="Temperature Image">
-        <p id="travel_h.reco"></p>
-    </div>
-    
-    <div class="weather-box3" id="weather3Box2">
-        <h2>Recommended</h2>
-        <img src="/user_dashboard/images/recommendations/hum.png" alt="Temperature Image">
-        <p id="travel_reco"></p>
-    </div>
-    
-    <div class="weather-box3" id="weather3Box3">
-        <h2>Limited</h2>
-        <img src="/user_dashboard/images/recommendations/wind.png" alt="Temperature Image">
-        <p id="travel_limit"></p>
-    </div>
-    
-    <div class="weather-box3" id="weather3Box4">
-        <h2> Not Recommended</h2>
-        <img src="/user_dashboard/images/recommendations/clouds.png" alt="Temperature Image">
-        <p id="travel_notreco"></p>
-    </div>
-    
-</div>
-</div>
-                </div>
-              </section>
+           
               
               
               
@@ -1550,9 +1285,33 @@ https://templatemo.com/tm-590-topic-listing
                 </div>
             </div>
         </footer>
+        
+        
+    
 
 
-        <!-- JAVASCRIPT FILES -->
+        <!-- JAVASCRIPT FILES  -->
+        
+        <script>
+        document.getElementById("user-profile-link").addEventListener("click", function () {
+            window.location.href = "/view_userprofile";
+        }); 
+        
+        
+
+        document.getElementById("switch-account-link").addEventListener("click", function () {
+            window.location.href = "/userlogin";
+        });
+
+        document.getElementById("sign-out-link").addEventListener("click", function () {
+            window.location.href = "/home";
+        });
+
+        document.getElementById("sendfeedback-link").addEventListener("click", function () {
+            window.location.href = "/feedback";
+        });
+
+        </script>
 
         <script src="/user_dashboard/js/jquery.min.js"></script>
         <script src="/user_dashboard/js/bootstrap.bundle.min.js"></script>
@@ -1565,7 +1324,180 @@ https://templatemo.com/tm-590-topic-listing
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+ElP9KLmQL5Pw0+9r/JUmbGFGJ1jFQ484JwF/pvHFExegMW" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ 
 
-<script  src="/user_dashboard/js/script.js"></script>
+<script >
+function updateSearchBar() {
+    let dropdown = document.getElementById("searchDropdown");
+    let searchBox = document.getElementById("searchBox");
+   
+    searchBox.style.display = "none";
+    searchBox.firstChild.value = dropdown.value;
+   }
+   
+   function handleKeyPress(event) {
+    if (event.key === "Enter") {
+       showWeatherData();
+    }
+   }
+ 
+var searchBox = document.getElementById('searchBox');
+ 
+var searchInputState = document.querySelector('.form-control1');
+var searchInput = document.querySelector('.form-control');
+var weatherContainer = document.getElementById('weatherContainer');
+ 
+function updateSearchBar() {
+    var selectedCity = document.getElementById('searchDropdown').value;
+    searchInput.value = selectedCity;
+    
+    
+}
+ 
+function redirectToLogin() {
+    window.location.href = "";
+}
+ 
+function redirectToSignUp() {
+    window.location.href = "";
+}
+ 
+function fetchApiConfig() {
+	
+        return fetch('/api/config')
+          .then(response => response.json())
+          .then(config => {
+    return {
+        apiKey: config.apiKey,
+        apiUrl: config.apiUrl
+    };
+});
+ 
+}
+ 
+function showWeatherData() {
+     var selectedCity = searchInput.value || document.getElementById('searchDropdown').value;
+ 
+    if (selectedCity) {
+// Fetch API key and URL from the Spring Boot REST controller
+ 
+fetchApiConfig()
+    .then(config => {
+        // Use the fetched API key and URL
+        var apiKey = config.apiKey;
+        var apiUrl = `${config.apiUrl}?q=${selectedCity}&appid=${apiKey}&units=metric`;
+ 
+        // Fetch weather data from OpenWeatherMap API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+				
+				 if (data.cod === '404') {
+				
+				document.getElementById('weatherContainer').style.display = 'none'	
+                document.getElementById('weather-info').innerText = 'City not found. Please try again.';
+            }
+            
+            else {
+				
+				var simpleDescription = data.weather[0].main;
+				var fullDescription = data.weather[0].description;
+				var weatherInfo = 'Weather in ' + selectedCity + ' - ' + fullDescription;
+                var temperature = (data.main.temp).toFixed(0);
+                var humidity = data.main.humidity;
+                var windSpeed = (data.wind.speed).toFixed(1);
+                var cloudiness = data.clouds.all;
+                
+                // Update weather information in respective boxes
+                
+                document.getElementById('weather-info').innerText = weatherInfo;
+                document.getElementById('temperature-value').textContent = temperature + '°C';
+                document.getElementById('humidity-value').textContent = humidity + '%';
+                document.getElementById('wind-value').textContent = windSpeed + ' m/s';
+                document.getElementById('cloudiness-value').textContent = cloudiness + '%';
+ 
+                // Display weather data only if a city is selected or entered
+                weatherContainer.style.display = 'flex';
+                weatherContainer.classList.add('pop-in');
+                
+                //recommendation card , on clicking search
+                weatherContainer1.style.display = 'flex';
+                weatherContainer2.style.display = 'flex';
+                weatherContainer3.style.display = 'flex';
+                weatherContainer4.style.display = 'flex';
+                
+                fetch("/getfoods/"+encodeURIComponent(searchInputState.value)+"/"+encodeURIComponent(temperature))
+            .then(response => response.json())
+            .then(data => {
+				
+				document.getElementById('veg').innerText = data[0].foodName;
+                document.getElementById('nonveg').textContent = data[1].foodName;
+                document.getElementById('liquid').textContent =data[2].foodName;
+				
+				})
+                
+                 fetch("/clothing/"+encodeURIComponent(simpleDescription))
+            .then(response => response.json())
+            .then(data => {
+				
+				document.getElementById('tops').innerText = data[0].itemName;
+                document.getElementById('bottom').textContent = data[1].itemName;
+                document.getElementById('accessories').textContent =data[2].itemName;
+                document.getElementById('footwear').textContent = data[3].itemName;
+                document.getElementById('pullovers').textContent = data[4].itemName;
+				
+				})
+				
+				fetch("/outdoor/"+encodeURIComponent(simpleDescription))
+            .then(response => response.json())
+            .then(data => {
+				
+				document.getElementById('out_h.reco').innerText = data[0].activityname;
+                document.getElementById('out_reco').textContent = data[1].activityname;
+                document.getElementById('out_limit').textContent =data[2].activityname;
+                document.getElementById('out_notreco').textContent = data[3].activityname;
+				
+				})
+				
+				fetch("/travel/"+encodeURIComponent(simpleDescription))
+            .then(response => response.json())
+            .then(data => {
+				
+				document.getElementById('travel_h.reco').innerText = data[0].travelname;
+                document.getElementById('travel_reco').textContent = data[1].travelname;
+                document.getElementById('travel_limit').textContent =data[2].travelname;
+                document.getElementById('travel_notreco').textContent = data[3].travelname;
+				
+				})
+                }
+            })
+            
+    })
+    
+}
+else {
+// Optionally show an alert or handle the case where no city is selected or entered
+alert('Please select or enter a city.');
+}
+}
+ 
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        
+        showWeatherData();
+    }
+}
+ 
+ 
+
+
+	
+<!-- changes done -->
+	
+	
+	
+
+</script>
     </body>
 </html>

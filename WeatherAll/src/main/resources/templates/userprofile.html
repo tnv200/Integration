@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile App</title>
+  <link rel="stylesheet" href="path/to/your/fontawesome/css/all.min.css">
+  <style>
+    /* Your CSS styles go here */
+    body {
+      font-family: 'Hind Guntur', sans-serif;
+      color: #054231;
+      display: flex;
+      justify-content: center;
+      background: #49afa8;
+      background-image: url('https://github.com/OlgaKoplik/CodePen/blob/master/leaf.png?raw=true');
+      background-repeat: no-repeat, no-repeat;
+      background-position: 200% -40%;
+      background-size: 80%;
+    }
+ 
+    .card {
+      margin-left: 500px;
+      width: 410px;
+      height: 600px;
+      padding: 15px;
+      margin-top: 40px;
+      border-radius: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 15px 10px 25px 0px #3fa1a9;
+      background: #fff;
+      background-image: url('https://github.com/OlgaKoplik/CodePen/blob/master/leaf2.png?raw=true'),
+        url('https://github.com/OlgaKoplik/CodePen/blob/master/leaf.png?raw=true');
+      background-repeat: no-repeat, no-repeat;
+      background-position: 120% -5%, 200% -40%;
+      background-size: 40%, 80%;
+      animation: open 0.1s;
+    }
+ 
+    @keyframes open {
+      0% {
+        background-position: 166% -25%, 220% -69%;
+      }
+      100% {
+        background-position: 120% -5%, 200% -40%;
+      }
+    }
+ 
+    form {
+      
+      /* border: 2px solid red; */
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+ 
+    .field {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    input {
+      border-radius: 15px;
+      width: 300px;
+      border: 1px solid #b7b7b7;
+      padding: 8px 10px;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+ 
+    input:focus {
+      outline: none;
+      border: 1px solid #64d488;
+    }
+ 
+    button {
+      position: relative;
+      color: #054231;
+      letter-spacing: 1px;
+      margin: 20px 0;
+      font-size: 18px;
+      padding: 10px;
+      text-align: center;
+      transition: 0.5s;
+      border-radius: 10px;
+      cursor: pointer;
+      border-radius: 25px;
+      border: none;
+      background: #64d488;
+    }
+ 
+    .edit {
+      color: #fff;
+      width: 180px;
+    }
+ 
+    button:hover {
+      left: 0;
+      color: #fff;
+      width: 180px;
+      box-shadow: 0px 0px 20px 0px hsl(156, 56%, 61%);
+    }
+ 
+    *,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+ 
+ 
+ 
+.typing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    color: rgb(95, 73, 54);
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 40;
+}
+ 
+#typing::after {
+    content: '|';
+    position: relative;
+    right: 0;
+    animation: blink 1s step-end infinite;
+}
+ 
+@keyframes blink {
+    from, to {
+        color: transparent
+    }
+    50% {
+        color: yellow;
+    }
+}
+
+
+.navbar{
+           /* border: 3px solid black;   */
+            display : flex ;
+            justify-content: space-around;
+            height: 70px;
+            background-color: rgba(10, 9, 9, 0.1);
+            
+        }
+        .logo{
+           /*  border: 3px solid black; */
+            align-items: center;
+            display: flex;
+            text-decoration: none;
+        }
+        .logo a{
+            text-decoration: none;
+            color: #ffff;
+            font-size: x-large;
+         
+            /* padding-top: 20px; 
+            border: 3px solid black;  */
+        }
+
+        .logo img {
+            margin-right: 10px;
+        }
+
+        .services{
+            /*border: 3px solid black;*/
+            margin-right: 150px;
+            align-items: center;
+            display: flex;
+
+        }
+
+        .navbar img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .services a{
+            text-decoration: none;
+            color: #ffff;
+            font-size: x-large;
+        }
+       .uday
+       {
+       width: 100% ;
+       }
+ 
+  
+
+ 
+ 
+  </style>
+</head>
+<body>
+<div class ="uday">
+<div class="navbar">
+<div class="logo">
+    <img src="/Login/Logo.png" alt="Weather Fable Logo" width="40" height="40">
+        
+        <a href="/u_dashboard">Weather Fable</a>
+</div>
+<div class="services">
+    <a href="/about">About</a>
+</div>
+    </div>
+
+  <div id="root">
+    <div class="card">
+      <form th:object="${received}">
+      
+      
+      
+      <h1  class="typing" id="typing" ></h1>
+      
+      	<div class="field">
+          <label for="user-id">User ID:</label>
+          <input type="text" id="user-id" placeholder="enter user-id" value="" name="user-id"
+                                         th:value="${user3 != null and user3.size() > 0 ? user3[0] : ''}" readonly>
+        </div>
+        
+        <div class="field">
+          <label for="name">Name:</label>
+          <input type="text" id="name" placeholder="enter name" value="" name="name"
+                                         th:value="${user2 != null and user2.size() > 0 ? user2[0] : ''}" readonly>
+        </div>
+        
+       
+        <div class="field">
+          <label for="email">Email:</label>
+           <input type="text" id="email" placeholder="enter email id" value="" name="email"
+                                         th:value="${user1 != null and user1.size() > 0 ? user1[0] : ''}" readonly>
+        </div>
+        
+        <button type="submit" class="edit">Edit Profile</button>
+        
+      </form>
+    </div>
+  </div>
+  
+  </div>
+ 
+  <script src="path/to/your/fontawesome/js/all.min.js"></script>
+  <!-- Include other scripts if needed -->
+ 
+  <script>
+    const greeting = ['Profile Page'];
+let currentGreetingIndex = 0;
+let currentCharacterIndex = 0;
+let isDeleting = false;
+let isPaused = false;
+let pauseEnd = 0;
+ 
+function typeWriterEffect() {
+  const greetingElement = document.getElementById('typing');
+ 
+  if (isPaused && Date.now() > pauseEnd) {
+    isPaused = false;
+    if (isDeleting) {
+      currentGreetingIndex = (currentGreetingIndex + 1) % greeting.length;
+      isDeleting = false;
+    } else {
+      isDeleting = true;
+    }
+  }
+ 
+  if (!isPaused && !isDeleting && currentCharacterIndex === greeting[currentGreetingIndex].length) {
+    isPaused = true;
+    pauseEnd = Date.now() + 800;
+    return setTimeout(typeWriterEffect, 50);
+  }
+ 
+  if (!isPaused && isDeleting && currentCharacterIndex === 0) {
+    isPaused = true;
+    pauseEnd = Date.now() + 200;
+    return setTimeout(typeWriterEffect, 50);
+  }
+ 
+  const timeout = isDeleting ? 100 : 200;
+  greetingElement.innerText = greeting[currentGreetingIndex].substring(0, currentCharacterIndex);
+  currentCharacterIndex = isDeleting ? currentCharacterIndex - 1 : currentCharacterIndex + 1;
+  setTimeout(typeWriterEffect, timeout);
+}
+ 
+typeWriterEffect();
+  </script>
+</body>
+</html>
+ 
