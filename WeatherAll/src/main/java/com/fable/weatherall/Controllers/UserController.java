@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.LoginDTO;
 import com.fable.weatherall.DTOs.UserDTO;
 import com.fable.weatherall.DTOs.VerifyOtpDTO;
 import com.fable.weatherall.Responses.LoginResponse;
 import com.fable.weatherall.Services.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 
 
@@ -27,6 +30,7 @@ public class UserController {
 	
 	@PostMapping(path = "/save")
 	public String saveUser(@RequestBody UserDTO userDTO) {
+		userDTO.setUserType("user");
 		String id = userService.addUser(userDTO);
 		return id;
 	}
@@ -57,4 +61,10 @@ public class UserController {
 		return "otp send successfully";
 	}
 	
+	 @PostMapping("/authenticate")
+	    public ResponseEntity<?> loginAdmin(@RequestBody User user,HttpSession session) {
+	    	session.setAttribute("adminEmail", user.getEmail());
+	    	LoginResponse loginResponse = userService.loginAdmin(user);
+			return ResponseEntity.ok(loginResponse);
+	    }
 }

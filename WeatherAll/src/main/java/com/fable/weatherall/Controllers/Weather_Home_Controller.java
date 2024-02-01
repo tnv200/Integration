@@ -122,7 +122,7 @@ public class Weather_Home_Controller {
 	  	    @PostMapping("/deleteUser")
 	  	    public String deleteUser(@RequestParam("userId") int userId) {
 	  	        //System.out.println("agfakasbdfpkbws");
-	  	    	adminService.deleteUserById(userId);
+	  	    	userService.deleteUserById(userId);
 	  	        // You can redirect to a different page or return a response as needed
 	  	        return "redirect:/getUsers"; // Redirect to a page showing the list of users, for example
 	  	    }

@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service; // Added this import
 
+import com.fable.weatherall.Admin_User_Entities.Admin;
 import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.LoginDTO;
 import com.fable.weatherall.DTOs.UserDTO;
@@ -177,9 +178,8 @@ public class UserService {
     }
 
     public LoginResponse loginUser(LoginDTO loginDTO) {
-        
         User user1 = userRepo.findByEmail(loginDTO.getEmail());
-        if (user1 != null) {
+        if (user1 != null && user1.getUserType().equals("user")) {
             String password = loginDTO.getPassword();
             String encodedPassword = user1.getPassword();
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
@@ -197,5 +197,31 @@ public class UserService {
             return new LoginResponse("Email not exists", false);
         }
         
+    }
+    public LoginResponse loginAdmin(User user) {
+		User user2 = userRepo.findByEmail(user.getEmail());
+        if (user2 != null && user2.getUserType().equals("admin")) {
+            String password = user.getPassword();
+            String encodedPassword = user2.getPassword();
+            System.out.println(password);
+            Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
+            if (isPwdRight) {
+                Optional<User> adm = userRepo.findOneByEmailAndPassword(user.getEmail(), encodedPassword);
+                if (adm.isPresent()){
+                    return new LoginResponse("Login Success", true); // Fixed syntax
+                } else {
+                    return new LoginResponse("Login Failed", false);
+                }
+            } else {
+                return new LoginResponse("Password Not Match", false); // Fixed typo
+            }
+        } else {
+            return new LoginResponse("Email not exists", false);
+        }
+	}
+    
+    @Transactional
+    public void deleteUserById(int userId) {
+        userRepo.deleteByUserid(userId);
     }
 }

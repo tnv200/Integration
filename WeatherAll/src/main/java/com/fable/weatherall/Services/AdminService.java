@@ -29,8 +29,7 @@ public class AdminService {
 //	private static final Logger log = LoggerFactory.getLogger(AdminServiceImpl.class);
     @Autowired
     private UserRepo userRepo;
-    @Autowired
-    private AdminRepo adminRepo;
+   
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -44,10 +43,7 @@ public class AdminService {
         return admin != null && passwordEncoder.matches(password, admin.getPassword());
     }
     
-    @Transactional
-    public void deleteUserById(int userId) {
-        userRepo.deleteByUserid(userId);
-    }
+   
     
 //    public Admin findAdminByEmail(String email) {
 //        return adminRepo.findByUsername(email).orElse(null);
@@ -58,37 +54,37 @@ public class AdminService {
 //        return userRepo.findAll();
 //    }
     
-    public void registerAdmin(AdminDTO adminDTO) {
-        Admin admin = new Admin();
-        admin.setUsername(adminDTO.getUsername());
-        admin.setEmail(adminDTO.getEmail());
-        admin.setPassword(passwordEncoder.encode(adminDTO.getPassword()));
-        admin.setConfirmpassword(passwordEncoder.encode(adminDTO.getConfirmpassword()));
-        adminRepo.save(admin);
-    }
+//    public void registerAdmin(AdminDTO adminDTO) {
+//        Admin admin = new Admin();
+//        admin.setUsername(adminDTO.getUsername());
+//        admin.setEmail(adminDTO.getEmail());
+//        admin.setPassword(passwordEncoder.encode(adminDTO.getPassword()));
+//        admin.setConfirmpassword(passwordEncoder.encode(adminDTO.getConfirmpassword()));
+//        adminRepo.save(admin);
+//    }
 
 
 	
-	public LoginResponse loginAdmin(Admin admin) {
-		Admin admin1 = adminRepo.findByEmail(admin.getEmail());
-        if (admin1 != null) {
-            String password = admin.getPassword();
-            String encodedPassword = admin1.getPassword();
-            Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
-            if (isPwdRight) {
-                Optional<Admin> adm = adminRepo.findOneByEmailAndPassword(admin.getEmail(), encodedPassword);
-                if (adm.isPresent()){
-                    return new LoginResponse("Login Success", true); // Fixed syntax
-                } else {
-                    return new LoginResponse("Login Failed", false);
-                }
-            } else {
-                return new LoginResponse("Password Not Match", false); // Fixed typo
-            }
-        } else {
-            return new LoginResponse("Email not exists", false);
-        }
-	}
+//	public LoginResponse loginAdmin(Admin admin) {
+//		Admin admin1 = adminRepo.findByEmail(admin.getEmail());
+//        if (admin1 != null) {
+//            String password = admin.getPassword();
+//            String encodedPassword = admin1.getPassword();
+//            Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
+//            if (isPwdRight) {
+//                Optional<Admin> adm = adminRepo.findOneByEmailAndPassword(admin.getEmail(), encodedPassword);
+//                if (adm.isPresent()){
+//                    return new LoginResponse("Login Success", true); // Fixed syntax
+//                } else {
+//                    return new LoginResponse("Login Failed", false);
+//                }
+//            } else {
+//                return new LoginResponse("Password Not Match", false); // Fixed typo
+//            }
+//        } else {
+//            return new LoginResponse("Email not exists", false);
+//        }
+//	}
 	
 //	public UserAddResponse useradd(User user) {
 //		User user1 = userRepo.findByEmail(user.getEmail());
