@@ -61,10 +61,10 @@ public class Weather_Home_Controller {
     }
 	
 
-	@GetMapping("/user_profile")
-	public String displayUserProfile() {
-        return "user_profile";
-    }
+//	@GetMapping("/user_profile")
+//	public String displayUserProfile() {
+//        return "user_profile";
+//    }
 	
 	@GetMapping("/admin_dashboard")
 	public String displayAdminDashboard() {
@@ -84,6 +84,12 @@ public class Weather_Home_Controller {
 	@GetMapping("/forgetPassword")
 	public String forgetPassword() {
         return "forgetPassword";
+    }
+	
+	
+	@GetMapping("/feedback")
+	public String displayfeedbackPage() {
+        return "s_feedback";
     }
 	
 	
@@ -179,5 +185,39 @@ public class Weather_Home_Controller {
 	    	return "/pages-profile";
 	    }
 
+	
+	      @GetMapping("/view_userprofile")
+	       public String view_userprofile(HttpSession session,Model model)
+		    {
+				
+			//System.out.println("user profile with data");
+				String email = (String) session.getAttribute("userEmail");
+				String name = userRepo.findUsernameByEmail(email);
+				String userid =userRepo.findUseridByEmail(email);
+				
+				System.out.println(name);
+				
+				
+//		    	User user = repo.findByEmail(email);
+		    	
+		    	
+		    	
+//		    	System.out.println("admin + " + admin.getEmail());
+		    	
+		    	List<String> user1 = new ArrayList<>();
+		    	List<String> user2 = new ArrayList<>();
+		    	List<String> user3 = new ArrayList<>();
+		    	
+		    	user1.add(email);
+		    	user2.add(name);
+		    	user3.add(userid);
+		    	
+		    	model.addAttribute("user1", user1);
+		    	model.addAttribute("user2", user2);
+		    	model.addAttribute("user3", user3);
+//		    	System.out.println("Raja");
+		    	
+		    	return "userprofile";
+		    }
 	
 }

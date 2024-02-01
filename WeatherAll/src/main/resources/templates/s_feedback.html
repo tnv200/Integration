@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <!-- Add any necessary CSS styles here -->
+    <style >      
+    body {
+    		background-image: url('https://plus.unsplash.com/premium_photo-1682310144714-cb77b1e6d64a?q=80&w=1512&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+	        
+            margin: 0;
+            padding: 0;
+            flex-direction: column;
+            height: 100vh;
+            
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #suggestion-block {
+        
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #feedback-suggestion {
+       
+            width: 100%;
+            max-width: 400px;
+            margin: 10px auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #send-feedback-btn {
+        
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .navbar{
+           /* border: 3px solid black;   */
+            display : flex ;
+            justify-content: space-around;
+            height: 70px;
+            background-color: rgba(10, 9, 9, 0.1);
+            
+        }
+        .logo{
+           /*  border: 3px solid black; */
+            align-items: center;
+            display: flex;
+            text-decoration: none;
+        }
+        .logo a{
+            text-decoration: none;
+            color: #ffff;
+            font-size: x-large;
+         
+            /* padding-top: 20px; 
+            border: 3px solid black;  */
+        }
+
+        .logo img {
+            margin-right: 10px;
+        }
+
+        .services{
+            /*border: 3px solid black;*/
+            margin-right: 150px;
+            align-items: center;
+            display: flex;
+
+        }
+
+        .navbar img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .services a{
+            text-decoration: none;
+            color: #ffff;
+            font-size: x-large;
+        }
+        .page{
+        	
+        	display: flex;
+            align-items: center;
+            justify-content: center;
+           
+        }
+        
+        .feed{
+        	border: 1px solid black;
+        	margin-top:180px;
+        	
+        	width: 500px;
+        	text-align: center;
+		    padding: 20px;
+		   
+		    border-radius: 8px;
+		    
+		    background-color: rgba(255, 255, 255, 0.9); 
+		    padding: 20px;
+		    border-radius: 8px;
+        	
+        } 
+        
+        </style>
+</head>
+
+<body>
+<div class="total">
+<div class="navbar">
+<div class="logo">
+    <img src="/Login/Logo.png" alt="Weather Fable Logo" width="40" height="40">
+        
+        <a href="/u_dashboard">Weather Fable</a>
+</div>
+<div class="services">
+    <a href="/about">About</a>
+</div>
+    </div>
+    <div class="page">
+    <div class="feed">
+	<div>
+    <h1>Send Feedback</h1>
+	</div>
+    <div id="suggestion-block">
+        <h5>Got a technical issue? Want to send feedback about any feature? Let us know.</h5>
+        <textarea id="feedback-suggestion" rows="4" cols="50" placeholder="Enter your suggestion here"></textarea>
+    </div>
+	
+	<div>
+    <button id="send-feedback-btn">Send</button>
+	</div>
+    
+    
+    </div>
+   </div>
+   </div>
+
+    <!-- Add any necessary JavaScript scripts here -->
+    <script>
+        document.getElementById("send-feedback-btn").addEventListener("click", function () {
+            // Get the feedback suggestion from the textarea
+            var feedbackSuggestion = document.getElementById("feedback-suggestion").value;
+
+            // Make a POST request to /submit-feedback
+            fetch('/submit-feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ suggestion: feedbackSuggestion }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response
+                console.log('Response:', data);
+                
+                // Show alert and redirect on success
+                if (data.success) {
+                    alert('Feedback sent!');
+                    window.location.href = 'u_dashboard';
+                } else {
+                    alert('Error submitting feedback. Please try again.');
+                }
+                
+                
+                
+                
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
