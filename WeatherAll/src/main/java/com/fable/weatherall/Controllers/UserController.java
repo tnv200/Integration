@@ -38,7 +38,7 @@ public class UserController {
 	//"Login Success" response in login page
 	@PostMapping(path = "/login")
 	public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDTO,HttpSession session) {
-		System.out.println("Working");
+		//System.out.println("Working");
 		
 		session.setAttribute("userEmail", loginDTO.getEmail());
 		LoginResponse loginResponse = userService.loginUser(loginDTO);

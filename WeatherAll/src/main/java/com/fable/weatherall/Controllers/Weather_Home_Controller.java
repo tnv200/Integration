@@ -26,15 +26,13 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Weather_Home_Controller {
-	
-	@Autowired
-	AdminRepo repo;
+//	
+//	@Autowired
+//	AdminRepo repo;
 	
 	@Autowired
     private UserRepo userRepo;
 
-	@Autowired
-    private AdminService adminService;
 	
 	@Autowired
 	private UserService userService;
@@ -153,11 +151,11 @@ public class Weather_Home_Controller {
 	    {
 		
 			String email = (String) session.getAttribute("adminEmail");
-			String name = repo.findUsernameByEmail(email);
+			String name = userRepo.findUsernameByEmail(email);
 			
 //			String pass = (String) session.getAttribute("adminPass");
 			
-	    	Admin admin = repo.findByEmail(email);
+	    	User us = userRepo.findByEmail(email);
 	    	
 	    	
 //	    	Admin admin2 = repo.findByPassword(pass);
@@ -166,12 +164,12 @@ public class Weather_Home_Controller {
 //    	    System.out.println("admin : " + name);
 //	    	System.out.println("admin : " + admin2.getPassword());
     	    
-	    	List<Admin> user = new ArrayList<>();
+	    	List<User> user = new ArrayList<>();
 	    	List<String> user1 = new ArrayList<>();
 //	    	List<Admin> user2 = new ArrayList<>();
 
 	    	
-	    	user.add(admin);
+	    	user.add(us);
 	    	user1.add(name);
 //	    	user2.add(admin);
 
@@ -195,7 +193,7 @@ public class Weather_Home_Controller {
 				String name = userRepo.findUsernameByEmail(email);
 				String userid =userRepo.findUseridByEmail(email);
 				
-				System.out.println(name);
+//				System.out.println(name);
 				
 				
 //		    	User user = repo.findByEmail(email);
