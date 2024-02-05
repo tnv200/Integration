@@ -1,6 +1,9 @@
 package com.fable.weatherall.Services;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 //import org.slf4j.Logger;
@@ -10,12 +13,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
-import com.fable.weatherall.Admin_User_Entities.Admin;
+
+import com.fable.weatherall.Admin_User_Entities.ApiKeyUrl;
 import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.AdminDTO;
 import com.fable.weatherall.DTOs.LoginDTO;
-import com.fable.weatherall.Repos.AdminRepo;
+
+import com.fable.weatherall.Repos.ApiKeyUrlRepo;
 import com.fable.weatherall.Repos.UserRepo;
 import com.fable.weatherall.Responses.LoginResponse;
 import com.fable.weatherall.Responses.UserAddResponse;
@@ -27,11 +33,14 @@ import jakarta.transaction.Transactional;
 public class AdminService {
 	
 //	private static final Logger log = LoggerFactory.getLogger(AdminServiceImpl.class);
+//    @Autowired
+//    private UserRepo userRepo;
+    
     @Autowired
-    private UserRepo userRepo;
+    private ApiKeyUrlRepo apikeyurlrepo;
    
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
 
 
 //    public Optional<User> findByUserId(int userid) {
@@ -39,11 +48,26 @@ public class AdminService {
 //    }
 
     
-    public boolean authenticateAdmin(Admin admin, String password) {
-        return admin != null && passwordEncoder.matches(password, admin.getPassword());
-    }
+//    public boolean authenticateAdmin(Admin admin, String password) {
+//        return admin != null && passwordEncoder.matches(password, admin.getPassword());
+//    }
     
-   
+    
+//    public Map<String, String> getApiKeyUrl()
+//    {
+//    	ApiKeyUrl a= apikeyurlrepo.findById(1);
+//    	
+//    	
+//    	 Map<String, String> api = new HashMap<>();
+//	       
+//    	 api.put("apiKey", a.getApikey());
+//	       
+//    	 api.put("apiUrl", a.getApiurl());
+//	        
+//
+//    	return api;
+//    }
+//   
     
 //    public Admin findAdminByEmail(String email) {
 //        return adminRepo.findByUsername(email).orElse(null);

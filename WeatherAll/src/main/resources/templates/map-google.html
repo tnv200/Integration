@@ -134,19 +134,19 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="/admin" aria-expanded="false"><i
-                                    class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                        <!-- <li> <a class="waves-effect waves-dark" href="/admin_dashboard" aria-expanded="false"><i
+                                    class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a> -->
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="/admin_dashboard/html/pages-profile.html" aria-expanded="false"><i
+                        <li> <a class="waves-effect waves-dark" href="/view_adminprofile" aria-expanded="false"><i
                                     class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="/admin_dashboard/html/table-basic.html" aria-expanded="false"><i
+                        <li> <a class="waves-effect waves-dark" href="/getUsers" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Tables</span></a>
                         </li>
                         <!-- <li> <a class="waves-effect waves-dark" href="icon-fontawesome.html" aria-expanded="false"><i
                                     class="fa fa-smile-o"></i><span class="hide-menu">Icons</span></a>
                         </li> -->
-                        <li> <a class="waves-effect waves-dark" href="/map-google" aria-expanded="false"><i
+                        <li> <a class="waves-effect waves-dark" href="/api/view" aria-expanded="false"><i
                                     class="fa fa-globe"></i><span class="hide-menu">Open WeatherMap</span></a>
                         </li>
                         <!-- <li> <a class="waves-effect waves-dark" href="pages-blank.html" aria-expanded="false"><i
@@ -181,10 +181,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Google Map</h3>
+                        <h3 class="text-themecolor">Open WeatherMap</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Google Map</li>
+                            <li class="breadcrumb-item active">Open WeatherMap</li>
                         </ol>
                     </div>
                     <!-- <div class="col-md-7 align-self-center">
@@ -242,17 +242,17 @@
                                         
                                     </div>
                                     
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
 
                                         <label class="col-md-12">   </label>
 
                                         <label class="col-md-12"> </label>
 
                                         <div class="col-md-12">
-                                           <!-- <input type="password" value="password"
-                                                class="form-control form-control-line">-->
+                                           <input type="password" value="password"
+                                                class="form-control form-control-line">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!--<div class="form-group">
                                         <label class="col-md-12">Phone No</label>
                                         <div class="col-md-12">
@@ -264,12 +264,20 @@
                                         <label class="col-md-12">Message</label>
                                         <div class="col-md-12">
                                             <textarea rows="5" class="form-control form-control-line"></textarea>
+                                            
+                                            class="btn btn-success"
                                         </div>
                                     </div>-->
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success">Edit</button>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success">Update</button>
+                                            <button class="btn btn-danger">Update</button>
                                         </div>
                                     </div>
                                     
@@ -300,8 +308,8 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer"> © 2023 Adminwrap by <a href="#">weatherfable.com</a> </footer>
-            <!-- ============================================================== -->
+<!--             <footer class="footer"> © 2023 Adminwrap by <a href="#">weatherfable.com</a> </footer>
+ -->            <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
         </div>
