@@ -38,7 +38,6 @@ public class UserService {
     private JavaMailSender javaMailSender;
 
     @Transactional
-   
     public String addUserinAdmin(UserDTO userDTO) {
         User user = new User();
         user.setUsername(userDTO.getUsername());
