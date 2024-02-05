@@ -184,6 +184,9 @@ public class Weather_Home_Controller {
 	    	
 	    	return "/pages-profile";
 	    }
+	
+	
+	
 
 	
 	      @GetMapping("/view_userprofile")
@@ -219,5 +222,7 @@ public class Weather_Home_Controller {
 		    	
 		    	return "userprofile";
 		    }
-	
+	      
+	      
+	     
 }

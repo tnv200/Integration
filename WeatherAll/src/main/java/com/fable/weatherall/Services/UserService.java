@@ -224,4 +224,26 @@ public class UserService {
     public void deleteUserById(int userId) {
         userRepo.deleteByUserid(userId);
     }
+    
+    
+//    public String editUserProfile(String userId,UserDTO userDTO) {
+//    	Optional<User> optionalUser = userRepo.findById(userId);
+//
+//        if (optionalUser.isPresent()) {
+//            User existingUser = optionalUser.get();
+//            
+//            // Update user information
+//            existingUser.setUsername(userDTO.getUsername());
+//            existingUser.setEmail(userDTO.getEmail());
+//            existingUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+//
+//            userRepo.save(existingUser);
+//
+//            return "Profile updated successfully";
+//        } else {
+//            return "User not found";
+//        }
+//    }
+//    
+    
 }

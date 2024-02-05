@@ -1,7 +1,11 @@
 package com.fable.weatherall.Controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,7 @@ import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.LoginDTO;
 import com.fable.weatherall.DTOs.UserDTO;
 import com.fable.weatherall.DTOs.VerifyOtpDTO;
+import com.fable.weatherall.Repos.UserRepo;
 import com.fable.weatherall.Responses.LoginResponse;
 import com.fable.weatherall.Services.UserService;
 
@@ -26,6 +31,12 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+    private UserRepo userRepo;
+	
+	
+
 	
 	
 	@PostMapping(path = "/save")
@@ -70,4 +81,16 @@ public class UserController {
 	    	LoginResponse loginResponse = userService.loginAdmin(user);
 			return ResponseEntity.ok(loginResponse);
 	    }
+	 
+//	 @PostMapping("/edit-profile")
+//	    public ResponseEntity<String> editProfile(@RequestBody UserDTO userDTO,HttpSession session,Model model) {
+//		    String email = (String) session.getAttribute("userEmail");
+//		 	String userid =userRepo.findUseridByEmail(email);
+//		 	
+//		 	List<String> user3 = new ArrayList<>();
+//		 	user3.add(userid);
+//		 	model.addAttribute("user3", user3);
+//	        String result = userService.editUserProfile(email,userDTO);
+//	        return ResponseEntity.ok(result);
+//	    }
 }

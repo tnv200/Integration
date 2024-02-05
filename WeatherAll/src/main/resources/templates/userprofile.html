@@ -213,7 +213,7 @@
 
   <div id="root">
     <div class="card">
-      <form th:object="${received}">
+      <form th:object="${received}" id="profileForm" action="/edit-profile" method="post">
       
       
       
@@ -238,7 +238,10 @@
                                          th:value="${user1 != null and user1.size() > 0 ? user1[0] : ''}" readonly>
         </div>
         
-        <button type="submit" class="edit">Edit Profile</button>
+        <button type="button" class="edit" onclick="enableEdit()">Edit Profile</button>
+   <button type="submit" class="edit" style="display: none;">Save Changes</button>
+        
+        
         
       </form>
     </div>
@@ -248,6 +251,15 @@
  
   <script src="path/to/your/fontawesome/js/all.min.js"></script>
   <!-- Include other scripts if needed -->
+  
+  <script>
+   function enableEdit() {
+      document.getElementById('name').readOnly = false;
+      document.getElementById('email').readOnly = false;
+      document.querySelector('.edit').style.display = 'none';
+      document.querySelector('[type="submit"]').style.display = 'block';
+   }
+</script>
  
   <script>
     const greeting = ['Profile Page'];
