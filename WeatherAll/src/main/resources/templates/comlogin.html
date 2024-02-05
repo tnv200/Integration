@@ -405,7 +405,7 @@ document.getElementById("forgotPasswordLink").addEventListener("click", function
                 role: role
             };
             
-            const endpoint = role === 'admin' ? '/admin/authenticate' : '/login';
+            const endpoint = role === 'admin' ? '/authenticate' : '/login';
             
             fetch(endpoint, {
                 method: 'POST',

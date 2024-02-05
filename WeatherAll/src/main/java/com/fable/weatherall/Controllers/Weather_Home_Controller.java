@@ -2,6 +2,7 @@ package com.fable.weatherall.Controllers;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fable.weatherall.Admin_User_Entities.Admin;
+
 import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.UserDTO;
-import com.fable.weatherall.Repos.AdminRepo;
+
 import com.fable.weatherall.Repos.UserRepo;
-import com.fable.weatherall.Services.AdminService;
+
 import com.fable.weatherall.Services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -27,14 +28,11 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class Weather_Home_Controller {
 	
-	@Autowired
-	AdminRepo repo;
+	
 	
 	@Autowired
     private UserRepo userRepo;
 
-	@Autowired
-    private AdminService adminService;
 	
 	@Autowired
 	private UserService userService;
@@ -148,41 +146,46 @@ public class Weather_Home_Controller {
 //	    }
 	  
 	  
-	@GetMapping("/view_adminprofile")
-    public String view_adminprofile(HttpSession session,Model model)
-	    {
-		
-			String email = (String) session.getAttribute("adminEmail");
-			String name = repo.findUsernameByEmail(email);
-			
-//			String pass = (String) session.getAttribute("adminPass");
-			
-	    	Admin admin = repo.findByEmail(email);
-	    	
-	    	
-//	    	Admin admin2 = repo.findByPassword(pass);
-	    	
-//	    	System.out.println(email);
-//    	    System.out.println("admin : " + name);
-//	    	System.out.println("admin : " + admin2.getPassword());
-    	    
-	    	List<Admin> user = new ArrayList<>();
-	    	List<String> user1 = new ArrayList<>();
-//	    	List<Admin> user2 = new ArrayList<>();
+//	@GetMapping("/view_adminprofile")
+//    public String view_adminprofile(HttpSession session,Model model)
+//	    {
+//			String email = (String) session.getAttribute("adminEmail");
+//			String name = userRepo.findUsernameByEmail(email);
+////			String pass = (String) session.getAttribute("adminPass");
+//	    	Admin admin = userRepo.findUsernameByEmail(email);
+////	    	Admin admin2 = repo.findByPassword(pass);
+////	    	System.out.println(email);
+////    	    System.out.println("admin : " + name);
+////	    	System.out.println("admin : " + admin2.getPassword());
+//	    	List<Admin> user = new ArrayList<>();
+//	    	List<String> user1 = new ArrayList<>();
+////	    	List<Admin> user2 = new ArrayList<>();
+//	    	user.add(admin);
+//	    	user1.add(name);
+////	    	user2.add(admin);
+//	    	model.addAttribute("user", user);
+//	    	model.addAttribute("user1", user1);
+////	    	model.addAttribute("user2", user2);
+//	    	return "/pages-profile";
+//	    }
+	    @GetMapping("/view_adminprofile")
+	    public String view_adminprofile(HttpSession session, Model model) {
+	        String email = (String) session.getAttribute("adminEmail");
 
-	    	
-	    	user.add(admin);
-	    	user1.add(name);
-//	    	user2.add(admin);
+	        // Assuming you have a User entity with the necessary fields (username, email, etc.)
+	        User admin = userRepo.findByEmail(email);
+	        String name = admin.getUsername();
+	        
+	        List<User> user = new ArrayList<>();
+	        List<String> user1 = new ArrayList<>();
 
-	    	
-	    	model.addAttribute("user", user);
-	    	model.addAttribute("user1", user1);
-//	    	model.addAttribute("user2", user2);
+	        user.add(admin);
+	        user1.add(name);
 
+	        model.addAttribute("user", user);
+	        model.addAttribute("user1", user1);
 
-	    	
-	    	return "/pages-profile";
+	        return "/pages-profile"; // Assuming "pages-profile" is the Thymeleaf template name
 	    }
 
 	

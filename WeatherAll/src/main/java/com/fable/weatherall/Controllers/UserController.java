@@ -30,7 +30,8 @@ public class UserController {
 	
 	@PostMapping(path = "/save")
 	public String saveUser(@RequestBody UserDTO userDTO) {
-		userDTO.setUserType("user");
+		//userDTO.setUserType("user");
+		userDTO.setUserType(userDTO.getUserType());
 		String id = userService.addUser(userDTO);
 		return id;
 	}

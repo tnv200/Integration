@@ -1,6 +1,7 @@
 package com.fable.weatherall.Services;
 
 import java.security.SecureRandom;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service; // Added this import
 
-import com.fable.weatherall.Admin_User_Entities.Admin;
+
 import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.LoginDTO;
 import com.fable.weatherall.DTOs.UserDTO;
@@ -43,6 +44,8 @@ public class UserService {
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setUserType(userDTO.getUserType());
+       
 //        user.setConfirmpassword(passwordEncoder.encode(userDTO.getConfirmpassword()));
 //        user.setUserType(userDTO.getUserType());
 
@@ -69,10 +72,7 @@ public class UserService {
         user.setConfirmpassword(passwordEncoder.encode(userDTO.getConfirmpassword()));
         user.setUserType(userDTO.getUserType());
         user.setOtp(userDTO.getOtp());
-
         userRepo.save(user);
-        
-
         return user.getUsername();
     }
     
