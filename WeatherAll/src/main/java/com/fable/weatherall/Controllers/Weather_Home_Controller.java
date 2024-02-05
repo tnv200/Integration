@@ -27,8 +27,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Weather_Home_Controller {
-	
-	
+
 	
 	@Autowired
     private UserRepo userRepo;
@@ -145,7 +144,6 @@ public class Weather_Home_Controller {
 //	    	return "table-basic";
 //	    }
 	  
-	  
 //	@GetMapping("/view_adminprofile")
 //    public String view_adminprofile(HttpSession session,Model model)
 //	    {
@@ -168,19 +166,47 @@ public class Weather_Home_Controller {
 ////	    	model.addAttribute("user2", user2);
 //	    	return "/pages-profile";
 //	    }
-	    @GetMapping("/view_adminprofile")
-	    public String view_adminprofile(HttpSession session, Model model) {
-	        String email = (String) session.getAttribute("adminEmail");
+//	    @GetMapping("/view_adminprofile")
+//	    public String view_adminprofile(HttpSession session, Model model) {
+//	        String email = (String) session.getAttribute("adminEmail");
+//
+//	        // Assuming you have a User entity with the necessary fields (username, email, etc.)
+//	        User admin = userRepo.findByEmail(email);
+//	        String name = admin.getUsername();
+//	        
+//	        List<User> user = new ArrayList<>();
+//	        List<String> user1 = new ArrayList<>();
+//}
+	@GetMapping("/view_adminprofile")
+    public String view_adminprofile(HttpSession session,Model model)
+	    {
+		
+			String email = (String) session.getAttribute("adminEmail");
+			String name = userRepo.findUsernameByEmail(email);
+			
+//			String pass = (String) session.getAttribute("adminPass");
+			
+	    	User us = userRepo.findByEmail(email);
+	    	
+	    	
+//	    	Admin admin2 = repo.findByPassword(pass);
+	    	
+//	    	System.out.println(email);
+//    	    System.out.println("admin : " + name);
+//	    	System.out.println("admin : " + admin2.getPassword());
+    	    
+	    	List<User> user = new ArrayList<>();
+	    	List<String> user1 = new ArrayList<>();
+//	    	List<Admin> user2 = new ArrayList<>();
 
-	        // Assuming you have a User entity with the necessary fields (username, email, etc.)
-	        User admin = userRepo.findByEmail(email);
-	        String name = admin.getUsername();
-	        
-	        List<User> user = new ArrayList<>();
-	        List<String> user1 = new ArrayList<>();
+	    	
+	    	user.add(us);
+	    	user1.add(name);
+//	    	user2.add(admin);
 
-	        user.add(admin);
-	        user1.add(name);
+//
+//	        user.add(admin);
+//	        user1.add(name);
 
 	        model.addAttribute("user", user);
 	        model.addAttribute("user1", user1);
@@ -198,7 +224,7 @@ public class Weather_Home_Controller {
 				String name = userRepo.findUsernameByEmail(email);
 				String userid =userRepo.findUseridByEmail(email);
 				
-				System.out.println(name);
+//				System.out.println(name);
 				
 				
 //		    	User user = repo.findByEmail(email);

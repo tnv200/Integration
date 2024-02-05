@@ -203,7 +203,7 @@ public class UserService {
         if (user2 != null && user2.getUserType().equals("admin")) {
             String password = user.getPassword();
             String encodedPassword = user2.getPassword();
-            System.out.println(password);
+//            System.out.println(password);
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
             if (isPwdRight) {
                 Optional<User> adm = userRepo.findOneByEmailAndPassword(user.getEmail(), encodedPassword);
