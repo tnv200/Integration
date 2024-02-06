@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.fable.weatherall.Admin_User_Entities.ApiKeyUrl;
 import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.UserDTO;
 
 import com.fable.weatherall.Repos.UserRepo;
-
+import com.fable.weatherall.Services.AdminService;
 import com.fable.weatherall.Services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -35,6 +35,9 @@ public class Weather_Home_Controller {
 	
 	@Autowired
 	private UserService userService;
+	
+	  @Autowired
+      private AdminService adminService;
 
 	
 	@GetMapping("/home")
@@ -102,10 +105,40 @@ public class Weather_Home_Controller {
 //	    }
 //	    
 	
+	    @PostMapping("/update_api")
+	    public String updateApi(@ModelAttribute("update") ApiKeyUrl apikeyurl) {
+	            
+	             //System.out.println("In the method");  	  
+	  	  
+	            //String id = 
+	             
+            adminService.update_ApiKeyUrl(apikeyurl);
+	            
+	        return "redirect:/api/view"; // Redirect to a different page after successful user addition
+	    }
+
+	
+//	    @PostMapping("/update_api")
+//	    public void updateApi() {
+//	            
+//	             System.out.println("In the method");  	  
+//	  	  
+//	            //String id = 
+//	    	ApiKeyUrl apikeyurl_in = new ApiKeyUrl();
+//	    	
+//	    	apikeyurl_in.setApikey("8c8f2a026dd44c7ee20c5a1a657bd2fa");
+//	    	apikeyurl_in.setApiurl("https://api.openweathermap.org/data/2.5/weather");
+//	    	
+//	    	
+//         adminService.update_ApiKeyUrl(apikeyurl_in);
+//	            
+////	        return "redirect:/api/view"; // Redirect to a different page after successful user addition
+//	    }
+	 
 	      @PostMapping("/u_add")
 	      public String saveUser(@ModelAttribute("userAdd") UserDTO userDTO) {
                   
-	               System.out.println("In the method");  	  
+	               //System.out.println("In the method");  	  
 	    	  
 	              //String id = 
 	               

@@ -39,7 +39,6 @@ public class UserService {
     private JavaMailSender javaMailSender;
 
     @Transactional
-   
     public String addUserinAdmin(UserDTO userDTO) {
     	User existingUser = userRepo.findByEmail(userDTO.getEmail());
 

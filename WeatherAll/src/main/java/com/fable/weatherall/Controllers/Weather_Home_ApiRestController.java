@@ -11,6 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,8 +35,8 @@ public class Weather_Home_ApiRestController {
 	      
 	     
 	     
-//	      @Autowired
-//          private AdminService adminService;
+	      @Autowired
+          private AdminService adminService;
 	      
 //	      Map<String, String> api = adminService.getApiKeyUrl();
 	      
@@ -71,12 +72,14 @@ public class Weather_Home_ApiRestController {
 		@ResponseBody 
 	    public Map<String, String> getApiConfig() {
 			
-			 ApiKeyUrl a=apikeyurlrepo.findById(1);
+			 Map<String, String> config = adminService.getApiKeyUrl();
 			
-			 Map<String, String> config = new HashMap<>();
+//			 ApiKeyUrl a=apikeyurlrepo.findById(1);
+//			
+//			 Map<String, String> config = new HashMap<>();
 			 
-		     config.put("apiKey", a.getApikey());
-		     config.put("apiUrl", a.getApiurl());
+//		     config.put("apiKey", a.getApikey());
+//		     config.put("apiUrl", a.getApiurl());
 			
 	        return config;
 	    }
@@ -84,10 +87,12 @@ public class Weather_Home_ApiRestController {
 		@GetMapping("/api/view")
 	    public String viewApiKeyUrl(Model model) {
 	    	
-			 ApiKeyUrl a=apikeyurlrepo.findById(1);
+//			 ApiKeyUrl a=apikeyurlrepo.findById(1);
 			
-	        model.addAttribute("apiKey", a.getApikey());
-	        model.addAttribute("apiUrl", a.getApiurl());
+			Map<String, String> config = adminService.getApiKeyUrl();
+			
+	        model.addAttribute("apiKey", config.get("apiKey"));
+	        model.addAttribute("apiUrl", config.get("apiUrl"));
 	        
 	        return "map-google";
 	    }

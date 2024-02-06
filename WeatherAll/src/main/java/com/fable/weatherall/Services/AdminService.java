@@ -14,13 +14,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fable.weatherall.Admin_User_Entities.ApiKeyUrl;
 import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.AdminDTO;
 import com.fable.weatherall.DTOs.LoginDTO;
-
+import com.fable.weatherall.DTOs.UserDTO;
 import com.fable.weatherall.Repos.ApiKeyUrlRepo;
 import com.fable.weatherall.Repos.UserRepo;
 import com.fable.weatherall.Responses.LoginResponse;
@@ -53,20 +54,41 @@ public class AdminService {
 //    }
     
     
-//    public Map<String, String> getApiKeyUrl()
-//    {
-//    	ApiKeyUrl a= apikeyurlrepo.findById(1);
-//    	
-//    	
-//    	 Map<String, String> api = new HashMap<>();
-//	       
-//    	 api.put("apiKey", a.getApikey());
-//	       
-//    	 api.put("apiUrl", a.getApiurl());
-//	        
+    public Map<String, String> getApiKeyUrl()
+    {
+    	ApiKeyUrl a= apikeyurlrepo.findById(1);
+    	
+    	
+    	 Map<String, String> api = new HashMap<>();
+	       
+    	 api.put("apiKey", a.getApikey());
+	       
+    	 api.put("apiUrl", a.getApiurl());
+	        
+
+    	return api;
+    }
+    
+    @Transactional
+    public void update_ApiKeyUrl(ApiKeyUrl apikeyurl) {
+    	
+    	ApiKeyUrl apikeyurl_in = apikeyurlrepo.findById(1);
+    	
+//    	ApiKeyUrl apikeyurl_in = new ApiKeyUrl();
+//    	apikeyurl_in.setApikey(apikeyurl.getApikey());
+//    	apikeyurl_in.setApiurl(apikeyurl.getApiurl());
+    	
+    	apikeyurl_in.setApikey(apikeyurl.getApikey());
+    	apikeyurl_in.setApiurl(apikeyurl.getApiurl());
+
+    	apikeyurlrepo.save(apikeyurl_in);
+        
 //
-//    	return api;
-//    }
+//        return user.getUsername();
+    }
+    
+//    @Transactional
+//    public void 
 //   
     
 //    public Admin findAdminByEmail(String email) {
