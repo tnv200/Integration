@@ -290,6 +290,36 @@ public class Weather_Home_Controller {
 		    	return "userprofile";
 		    }
 	      
+	      //changes made by shweta 
+	      @GetMapping("/Foodtable")
+		    public String adminprofilefood() {
+			  
+//		    	System.out.println("Hi");
+		    	return "foodtable";
+		    }
+	      
+	      @GetMapping("/Clothtable")
+		    public String adminprofilecloth() {
+			  
+//		    	System.out.println("Hi");
+		    	return "clothtable";
+		    }
+	    
+	      
+	      @GetMapping("/Activetable")
+		    public String adminprofileactive() {
+			  
+//		    	System.out.println("Hi");
+		    	return "activetable";
+		    }
+	      
+	      @GetMapping("/Traveltable")
+		    public String adminprofiletravel() {
+			  
+//		    	System.out.println("Hi");
+		    	return "traveltable";
+		    }
+	      
 	      
 	     
 }
