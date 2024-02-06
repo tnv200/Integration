@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Profile App</title>
   <link rel="stylesheet" href="path/to/your/fontawesome/css/all.min.css">
@@ -204,7 +204,7 @@
 <div class="logo">
     <img src="/Login/Logo.png" alt="Weather Fable Logo" width="40" height="40">
         
-        <a href="/u_dashboard">Weather Fable</a>
+        <a href="/user_dashboard">Weather Fable</a>
 </div>
 <div class="services">
     <a href="/about">About</a>
@@ -222,13 +222,13 @@
       	<div class="field">
           <label for="user-id">User ID:</label>
           <input type="text" id="user-id" placeholder="enter user-id" value="" name="user-id"
-                                         th:value="${user3 != null and user3.size() > 0 ? user3[0] : ''}" readonly>
+                                         th:value="${user3 != null and user3.size() > 0 ? user3[0] : ''}" readonly required >
         </div>
         
         <div class="field">
           <label for="name">Name:</label>
           <input type="text" id="name" placeholder="enter name" value="" name="name"
-                                         th:value="${user2 != null and user2.size() > 0 ? user2[0] : ''}" readonly>
+                                         th:value="${user2 != null and user2.size() > 0 ? user2[0] : ''}" readonly required>
         </div>
         
        
@@ -239,8 +239,10 @@
         </div>
         
         <button type="button" class="edit" onclick="enableEdit()">Edit Profile</button>
-   <button type="submit" class="edit" style="display: none;">Save Changes</button>
-        
+   <button type="submit" class="edit" onclick="saveChanges(event)">Save Changes</button>
+
+   
+   
         
         
       </form>
@@ -301,7 +303,62 @@ function typeWriterEffect() {
 }
  
 typeWriterEffect();
-  </script>
+function saveChanges(event) {
+    event.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+
+	if (name === '' || email === '') {
+            alert('Name and Email cannot be empty.');
+            return;
+        }
+
+    const data = {
+        username: name,
+        email: email
+    };
+
+    // Log data being sent
+    console.log('Data being sent:', data);
+
+    // Call backend to save changes
+    fetch('/edit-profile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle response from backend (optional)
+        console.log('Response from backend:', data);
+        
+        alert('Profile changed successfully!');
+
+        // Change button text to Edit Profile
+        document.querySelector('.edit').innerText = 'Edit Profile';
+
+        // Hide the Save Changes button
+        document.querySelector('[type="submit"]').style.display = 'none';
+        
+       //document.getElementById('name').readOnly = true;
+       // document.getElementById('email').readOnly = true;
+        
+        // Do not navigate to another page
+        window.location.href = '/user_dashboard';
+
+    })
+  //  .catch(error => {
+     //   console.error('Error:', error);
+  //      alert('Error occurred while updating the profile. Please try again.');
+  //  });
+}
+
+
+
+</script>
+
 </body>
 </html>
  

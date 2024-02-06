@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service; // Added this import
 import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.LoginDTO;
 import com.fable.weatherall.DTOs.UserDTO;
+import com.fable.weatherall.DTOs.VerifyOtpDTO;
 import com.fable.weatherall.Repos.UserRepo;
 import com.fable.weatherall.Responses.LoginResponse;
 
@@ -40,6 +41,13 @@ public class UserService {
     @Transactional
    
     public String addUserinAdmin(UserDTO userDTO) {
+    	User existingUser = userRepo.findByEmail(userDTO.getEmail());
+
+        if (existingUser != null) {
+            // Email already exists, handle accordingly (maybe show an error message)
+            return "Email already exists";
+        }
+
         User user = new User();
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
@@ -225,25 +233,37 @@ public class UserService {
         userRepo.deleteByUserid(userId);
     }
     
+    @Transactional
+    public String updateUserProfile(UserDTO userDTO) {
+        User user = userRepo.findByEmail(userDTO.getEmail());
+        if (user != null) {
+            user.setUsername(userDTO.getUsername());
+            user.setEmail(userDTO.getEmail());
+            userRepo.save(user);
+            return user.getUsername();
+        } else {
+            return "User not found";
+        }
+    }
     
-//    public String editUserProfile(String userId,UserDTO userDTO) {
-//    	Optional<User> optionalUser = userRepo.findById(userId);
-//
-//        if (optionalUser.isPresent()) {
-//            User existingUser = optionalUser.get();
-//            
-//            // Update user information
-//            existingUser.setUsername(userDTO.getUsername());
-//            existingUser.setEmail(userDTO.getEmail());
-//            existingUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-//
-//            userRepo.save(existingUser);
-//
-//            return "Profile updated successfully";
-//        } else {
-//            return "User not found";
-//        }
-//    }
-//    
+    @Transactional
+    public void saveEmailAndOTP(VerifyOtpDTO verifyOtpDTO) {
+        String email = verifyOtpDTO.getEmail();
+        String otp = verifyOtpDTO.getOtp();
+
+        User user = userRepo.findByEmail(email);
+
+        // Only save email and OTP if the user does not exist
+        if (user == null) {
+            user = new User();
+            user.setEmail(email);
+            user.setOtp(otp);
+            userRepo.save(user);
+        }
+    }
+
+    
+    
+
     
 }

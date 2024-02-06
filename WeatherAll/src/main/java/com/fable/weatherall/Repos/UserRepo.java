@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.fable.weatherall.Admin_User_Entities.User;
+
+import jakarta.transaction.Transactional;
 
 
 
@@ -30,7 +34,12 @@ public interface UserRepo extends JpaRepository<User, Integer>{
 	 String findUsernameByEmail(String email);
 	 
 	 @Query("SELECT a.userid FROM User a WHERE a.email = :email")
-	 String findUseridByEmail(String email);
+	 int findUseridByEmail(String email);
+	 
+	 @Modifying
+	 @Transactional
+	 @Query(value = "INSERT INTO email_otp (email, otp) VALUES (:email, :otp)", nativeQuery = true)
+	 void saveEmailAndOTP(@Param("email") String email, @Param("otp") String otp);
 
 
 }

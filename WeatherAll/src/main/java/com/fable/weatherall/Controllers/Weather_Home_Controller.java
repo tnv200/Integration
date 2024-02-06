@@ -225,7 +225,7 @@ public class Weather_Home_Controller {
 			//System.out.println("user profile with data");
 				String email = (String) session.getAttribute("userEmail");
 				String name = userRepo.findUsernameByEmail(email);
-				String userid =userRepo.findUseridByEmail(email);
+				int userid =userRepo.findUseridByEmail(email);
 				
 //				System.out.println(name);
 				
@@ -238,7 +238,7 @@ public class Weather_Home_Controller {
 		    	
 		    	List<String> user1 = new ArrayList<>();
 		    	List<String> user2 = new ArrayList<>();
-		    	List<String> user3 = new ArrayList<>();
+		    	List<Integer> user3 = new ArrayList<>();
 		    	
 		    	user1.add(email);
 		    	user2.add(name);
