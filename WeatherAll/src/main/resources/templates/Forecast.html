@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    
+    <style>
+        /* Add some basic styling for the weather boxes and container */
+        
+      body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background-image: url('data:image/jpeg;base64,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');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .forecast-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .weather-box {
+        border: 1px solid #ccc;
+        padding: 15px; /* Increase padding for better spacing */
+        margin: 70px; /* Increase margin for better spacing */
+        text-align: center;
+        width: 18%; /* Adjust the width as needed */
+        background-color: rgba(255, 255, 255, 0.9); /* Add a light background color */
+        border-radius: 10px; /* Add border-radius for rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);/* Adjust the width as needed */
+        }
+        
+         .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(10, 9, 9, 0.4);
+        }
+
+        .logo {
+            width: 250px;
+            display: flex;
+            margin-left: 150px;
+        }
+
+        
+
+        .logo a {
+            text-decoration: none;
+            color: #fff;
+            font-size: x-large;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        label[for="locationInput"] {
+    font-size: 22px; /* Adjust the font size as needed */
+    font-family: Arial, sans-serif;
+}
+
+
+#locationInput,
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #c5d5e0;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #fff;
+    color: #000;
+}
+        
+
+    </style>
+    
+</head>
+<body>
+	 <div class="navbar">
+<div class="logo">
+    <img src="/Login/Logo.png" alt="Weather Fable Logo" width="40" height="40">
+        
+        <a href="/home" >Weather Fable</a>
+</div>
+</div>
+	<center><br>
+    <h1>Weather Forecast</h1><br>
+    
+    <label for="locationInput">Enter Location:</label>
+    <input type="text" id="locationInput" placeholder="Enter location">
+    <button onclick="getWeatherForecast()">Get Forecast</button> <br><br><br><br>
+
+    <div id="weatherForecast" class="forecast-container"></div>
+    </center>
+
+   <script>
+    async function getWeatherForecast() {
+        const locationInput = document.getElementById("locationInput").value;
+        
+        if (!locationInput) {
+            alert("Please enter a location.");
+            return;
+        }
+
+        const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=f43a7bfb47684151b6962305240602&q=${locationInput}&days=5&aqi=no&alerts=no`;
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (data.error) {
+            alert("Please enter a correct location.");
+            return;
+        }
+
+        const forecastContainer = document.getElementById("weatherForecast");
+        forecastContainer.innerHTML = ''; // Clear previous forecast
+
+        data.forecast.forecastday.slice(0, 5).forEach(day => {
+            const box = document.createElement("div");
+            box.className = "weather-box";
+
+            const date = new Date(day.date_epoch * 1000);
+            const dayOfWeek = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date);
+
+            box.innerHTML = `
+                <h3>${dayOfWeek}</h3>
+                <p>Min Temp: ${day.day.mintemp_c}&deg;C</p>
+                <p>Max Temp: ${day.day.maxtemp_c}&deg;C</p>
+                <p>Condition: ${day.day.condition.text}</p>
+            `;
+
+            forecastContainer.appendChild(box);
+        });
+    }
+</script>
+
+    
+</body>
+</html>

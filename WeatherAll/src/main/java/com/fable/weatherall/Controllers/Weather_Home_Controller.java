@@ -92,6 +92,11 @@ public class Weather_Home_Controller {
         return "s_feedback";
     }
 	
+	@GetMapping("/forecast")
+	public String displayForecast() {
+        return "Forecast";
+    }
+	
 	
 //	@GetMapping("/addusr")
 //	public String displayForm() {

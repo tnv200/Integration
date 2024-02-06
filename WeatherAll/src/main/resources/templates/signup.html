@@ -153,12 +153,30 @@
             event.preventDefault(); // Prevent the default form submission behavior
 
             var userEmail = document.getElementById('email').value;
+            var username = document.getElementById('username').value;
+            
+           
 
             // Validate user email (you can add more comprehensive validation)
             if (!userEmail || !validateEmail(userEmail)) {
                 alert("Please enter a valid email address");
                 return;
             }
+            
+            //user name should not contain number 
+	// const usernameRegex = /^[^\d]+$/;
+    //if (!usernameRegex.test(username)) {
+      //  alert("Username should not contain numbers");
+       // return;
+    //}
+    
+    const firstFourCharacters = username.substring(0, 4);
+    const firstFourCharactersRegex = /^[A-Za-z]+$/;
+    if (!firstFourCharactersRegex.test(firstFourCharacters)) {
+        alert("First four characters should be alphabets");
+        return;
+    }
+      
 
             fetch('/sendOtp/' + userEmail, {
                 method: 'POST'
@@ -221,6 +239,8 @@
     console.log('After getting otp element:', otpElement);
     const otp = otpElement ? otpElement.value : '';
 
+
+	
 
     if (password !== confirmpassword) {
         alert("Passwords do not match");
