@@ -14,9 +14,12 @@ public class FoodService {
 	@Autowired
 	private FoodRepo repo;
 
-	public List<Food> getFoods(String state, Double temperature) {
+	public List<String> getFoods(String state, Double temperature) {
         // Find the category ID based on the input temperature
         Integer categoryId = repo.findCategoryIdByTemperature(temperature);
+        
+        
+        List<Integer> foodIds = repo.findFoodIdsByCategoryId(categoryId);
 
 //        if (categoryId != null) {
 //        	// Retrieve the foods that match the state and obtained category ID
@@ -25,7 +28,7 @@ public class FoodService {
 //            // Handle the case where no category ID is found for the given temperature
 //            return null;
     
-        return repo.findByStateAndCategoryId(state, categoryId);
+        return repo.findFoodNamesByFoodIdsAndState(foodIds, state);
         
     }
 }

@@ -16,11 +16,11 @@ public class ActivityRecommendation {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ActivityRecommendationid")
+    @Column(name = "activityRecommendationid")
     private Integer activityRecommendationid;
 
     @ManyToOne
-    @JoinColumn(name = "Activityid", nullable = false)
+    @JoinColumn(name = "activityid", nullable = false)
     private Activity activity;
 
     @ManyToOne

@@ -28,7 +28,7 @@ public interface UserRepo extends JpaRepository<User, Integer>{
 
 	Optional<User> findOneByEmailAndPassword(String username, String password);
 	
-	void deleteByUserid(int userid);
+	 void deleteByUserid(int userid);
 	
 	 @Query("SELECT a.username FROM User a WHERE a.email = :email")
 	 String findUsernameByEmail(String email);

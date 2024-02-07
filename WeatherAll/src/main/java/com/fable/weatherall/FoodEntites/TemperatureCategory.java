@@ -1,5 +1,9 @@
 package com.fable.weatherall.FoodEntites;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +23,11 @@ public class TemperatureCategory {
 
     @Column(name = "maxTemperature", nullable = false)
     private Double maxTemperature;
+    
+
+//    @OneToMany(mappedBy = "temperatureCategory") // mappedBy attribute to define the inverse side
+//    @JsonIgnore // Add this annotation to break the circular dependency
+//    private Set<FoodTemperatureMap> foodTemperatureMaps;
 
 	public Integer getCategoryId() {
 		return categoryId;

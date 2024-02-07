@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fable.weatherall.Admin_User_Entities.ApiKeyUrl;
 import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.UserDTO;
-
+import com.fable.weatherall.FoodEntites.Food;
+import com.fable.weatherall.Repos.FoodRepo;
 import com.fable.weatherall.Repos.UserRepo;
 import com.fable.weatherall.Services.AdminService;
 import com.fable.weatherall.Services.UserService;
@@ -31,6 +33,9 @@ public class Weather_Home_Controller {
 	
 	@Autowired
     private UserRepo userRepo;
+	
+	@Autowired
+	private FoodRepo foodrepo;
 
 	
 	@Autowired
@@ -109,6 +114,16 @@ public class Weather_Home_Controller {
 //	    	return "/pages-profile";
 //	    }
 //	    
+	
+	
+//	 @GetMapping("/getAllfood")
+//	 public List<Food> allFoods(){
+//   	 
+//   	 List<Food> a=foodrepo.findAll();
+//   	 
+//   	 return a;
+//   	 
+//    }
 	
 	    @PostMapping("/update_api")
 	    public String updateApi(@ModelAttribute("update") ApiKeyUrl apikeyurl) {

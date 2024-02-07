@@ -8,18 +8,20 @@ public class TravelNames {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Travelid")
-    private Integer Travelid;
+    @Column(name = "travelid")
+    private Integer travelid;
     
     @Column(name = "Travelname", nullable = false)
     private String Travelname;
 
+	
+
 	public Integer getTravelid() {
-		return Travelid;
+		return travelid;
 	}
 
 	public void setTravelid(Integer travelid) {
-		Travelid = travelid;
+		this.travelid = travelid;
 	}
 
 	public String getTravelname() {

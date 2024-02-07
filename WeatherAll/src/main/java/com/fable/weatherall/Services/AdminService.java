@@ -22,7 +22,16 @@ import com.fable.weatherall.Admin_User_Entities.User;
 import com.fable.weatherall.DTOs.AdminDTO;
 import com.fable.weatherall.DTOs.LoginDTO;
 import com.fable.weatherall.DTOs.UserDTO;
+import com.fable.weatherall.FoodEntites.Food;
+import com.fable.weatherall.FoodEntites.FoodTemperatureMap;
 import com.fable.weatherall.Repos.ApiKeyUrlRepo;
+import com.fable.weatherall.Repos.ClothItemRepo;
+import com.fable.weatherall.Repos.ClothRepo;
+import com.fable.weatherall.Repos.FoodRepo;
+import com.fable.weatherall.Repos.FoodTempMapRepo;
+import com.fable.weatherall.Repos.OutActivityRepo;
+import com.fable.weatherall.Repos.OutRepo;
+import com.fable.weatherall.Repos.TravelNameRepo;
 import com.fable.weatherall.Repos.UserRepo;
 import com.fable.weatherall.Responses.LoginResponse;
 import com.fable.weatherall.Responses.UserAddResponse;
@@ -39,7 +48,29 @@ public class AdminService {
     
     @Autowired
     private ApiKeyUrlRepo apikeyurlrepo;
+    
+    
+    @Autowired
+    private FoodRepo foodrepo;
+    
+    @Autowired
+    private FoodTempMapRepo ftmrepo;
+    
+    @Autowired
+    private ClothItemRepo cirepo;
+    
+    @Autowired
+    private ClothRepo clothrepo;
    
+    @Autowired
+    private OutActivityRepo outactrepo;
+    
+    @Autowired
+    private OutRepo outrepo;
+    
+    @Autowired
+    private TravelNameRepo trnmrepo;
+    
 //    @Autowired
 //    private PasswordEncoder passwordEncoder;
 
@@ -53,6 +84,66 @@ public class AdminService {
 //        return admin != null && passwordEncoder.matches(password, admin.getPassword());
 //    }
     
+    @Transactional
+    public void deleteFoodService(Integer foodid) {
+    	       
+             foodrepo.deleteByFoodId(foodid);  
+
+     }
+
+    @Transactional
+    public void delTempMap(Integer ftm) {
+    	
+//    	FoodTemperatureMap ftm_in = new FoodTemperatureMap ();
+
+     ftmrepo.deleteByFoodTemperatureId(ftm);
+    	
+    }
+    
+    @Transactional
+    public void delClothItem(Integer clothid) {
+    	
+
+
+     cirepo.deleteByClothingItemId(clothid);
+    	
+    }
+    
+    
+    @Transactional
+    public void delClothReco(Integer cloreid) {
+
+
+    	clothrepo.deleteByClothingRecommendationId(cloreid);
+    	
+    }
+    
+    @Transactional
+    public void delOutActs(Integer actid) {
+    	
+//    	FoodTemperatureMap ftm_in = new FoodTemperatureMap ();
+
+    	outactrepo.deleteByActivityid(actid);
+    	
+    }
+    
+    
+    @Transactional
+    public void delOutReco(Integer outreid) {
+
+
+    	outrepo.deleteByActivityRecommendationid(outreid);
+    	
+    }
+    
+    @Transactional
+    public void delTrNms(Integer traid) {
+    	
+//    	FoodTemperatureMap ftm_in = new FoodTemperatureMap ();
+
+    	trnmrepo.deleteByTravelid(traid);
+    	
+    }
     
     public Map<String, String> getApiKeyUrl()
     {
@@ -69,7 +160,7 @@ public class AdminService {
     	return api;
     }
     
-    @Transactional
+    
     public void update_ApiKeyUrl(ApiKeyUrl apikeyurl) {
     	
     	ApiKeyUrl apikeyurl_in = apikeyurlrepo.findById(1);
@@ -86,6 +177,17 @@ public class AdminService {
 //
 //        return user.getUsername();
     }
+    
+    
+    
+    
+//     public List<Food> allFoods(){
+//    	 
+//    	 List<Food> a=foodrepo.findAll();
+//    	 
+//    	 return a;
+//    	 
+//     }
     
 //    @Transactional
 //    public void 

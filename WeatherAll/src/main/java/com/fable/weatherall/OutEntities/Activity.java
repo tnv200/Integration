@@ -14,17 +14,17 @@ public class Activity {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "Activityid")
-	    private Integer Activityid;
+	    private Integer activityid;
 	    
 	    @Column(name = "Activityname", nullable = false)
 	    private String Activityname;
 
 		public Integer getActivityid() {
-			return Activityid;
+			return activityid;
 		}
 
 		public void setActivityid(Integer activityid) {
-			Activityid = activityid;
+			this.activityid = activityid;
 		}
 
 		public String getActivityname() {
@@ -34,5 +34,7 @@ public class Activity {
 		public void setActivityname(String activityname) {
 			Activityname = activityname;
 		}
+
+		
 
 }

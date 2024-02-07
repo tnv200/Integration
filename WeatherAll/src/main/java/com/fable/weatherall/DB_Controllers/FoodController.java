@@ -17,10 +17,10 @@ public class FoodController {
 	private FoodService service;
 	
 	@GetMapping("/getfoods/{state}/{temperature}")
-    public List<Food> getfoods(
+    public List<String> getfoods(
     		@PathVariable("state") String state,
     		@PathVariable("temperature") Double temperature) {
-		System.out.println(state+temperature);
+//		System.out.println(state+temperature);
         return service.getFoods(state, temperature);
     }
 }

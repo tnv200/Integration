@@ -1433,9 +1433,9 @@ fetchApiConfig()
             .then(response => response.json())
             .then(data => {
 				
-				document.getElementById('veg').innerText = data[0].foodName;
-                document.getElementById('nonveg').textContent = data[1].foodName;
-                document.getElementById('liquid').textContent =data[2].foodName;
+				document.getElementById('veg').innerText = data[0];
+                document.getElementById('nonveg').textContent = data[1];
+                document.getElementById('liquid').textContent =data[2];
 				
 				})
                 

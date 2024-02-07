@@ -11,13 +11,13 @@ public class FoodTemperatureMap {
     @Column(name = "foodTemperatureId")
     private Integer foodTemperatureId;
 
-    @ManyToOne
-    @JoinColumn(name = "foodId", nullable = false)
-    private Food food;
+    
+    @Column(name = "foodId", nullable = false)
+    private Integer foodId;
 
-    @ManyToOne
-    @JoinColumn(name = "categoryId", nullable = false)
-    private TemperatureCategory temperatureCategory;
+    
+    @Column(name = "categoryId", nullable = false)
+    private Integer categoryId;
 
 	public Integer getFoodTemperatureId() {
 		return foodTemperatureId;
@@ -27,21 +27,22 @@ public class FoodTemperatureMap {
 		this.foodTemperatureId = foodTemperatureId;
 	}
 
-	public Food getFood() {
-		return food;
+	public Integer getFoodId() {
+		return foodId;
 	}
 
-	public void setFood(Food food) {
-		this.food = food;
+	public void setFoodId(Integer foodId) {
+		this.foodId = foodId;
 	}
 
-	public TemperatureCategory getTemperatureCategory() {
-		return temperatureCategory;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public void setTemperatureCategory(TemperatureCategory temperatureCategory) {
-		this.temperatureCategory = temperatureCategory;
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
+	
 
     
 }
