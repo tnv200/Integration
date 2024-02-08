@@ -23,10 +23,10 @@ public interface ClothRepo extends JpaRepository<ClothingRecommendation, Integer
 	
 	public interface ClothingRecommendationDetailsProjection {
 		
-	    Integer getClothingRecommendationId();
-        String getDescription();
-        String getItemName();
-        String getTypeName();
+	    Integer getRecommendation_Id();
+        String getDescription_Id();
+        String getItem_Id();
+        String getType_Id();
     }
 
 	@Query("SELECT ci.itemName as itemName, ct.typeName as typeName	" +
@@ -38,7 +38,7 @@ public interface ClothRepo extends JpaRepository<ClothingRecommendation, Integer
 	List<ClothingRecommendationProjection> findByWeatherDescriptionDescription(@Param("description") String description);
 	
 	
-	  @Query("SELECT cr.clothingRecommendationId AS clothingRecommendationId, wd.description AS description, ci.itemName AS itemName, ct.typeName AS typeName " +
+	  @Query("SELECT cr.clothingRecommendationId AS recommendation_Id, wd.weatherDescriptionId AS description_Id, ci.clothingItemId AS item_Id, ct.clothingTypeId AS type_Id " +
 	           "FROM ClothingRecommendation cr " +
 	           "JOIN cr.weatherDescription wd " +
 	           "JOIN cr.clothingType ct " +
@@ -51,7 +51,7 @@ public interface ClothRepo extends JpaRepository<ClothingRecommendation, Integer
 	    	
 	        List<ClothingRecommendationDetailsProjection> results = findAllClothingRecommendationsWithDetails();
 	        
-	        results.sort(Comparator.comparing(ClothingRecommendationDetailsProjection::getClothingRecommendationId));
+	        results.sort(Comparator.comparing(ClothingRecommendationDetailsProjection::getRecommendation_Id));
 	        
 	        return results;
 	        

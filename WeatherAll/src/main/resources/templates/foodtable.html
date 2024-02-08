@@ -269,8 +269,8 @@
                                     class="fa fa-table"></i><span class="hide-menu">User Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Foodtable" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu">Food Table</span></a>
+                         <li> <a class="waves-effect waves-dark" href="/getAllfood" aria-expanded="false"><i
+                                    class="fa fa-table"></i><span class="hide-menu">Food Databases</span></a>
                         </li>
                         
                          <li> <a class="waves-effect waves-dark" href="/Clothtable" aria-expanded="false"><i
@@ -313,10 +313,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Food Table</h3>
+                        <h3 class="text-themecolor">Food Databases</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Table Basic</li>
+                            <li class="breadcrumb-item active">Food Databases</li>
                         </ol>
                     </div>
                     <div class="text-center mt-4">
@@ -328,16 +328,15 @@
                             <div class="modal-content">
                                 <span class="close">&times;</span>
                            
-                               <div class="popupform">   <form th:action="@{/u_add}" th:object="${userAdd}" th:method="post">
+                               <div class="popupform">  
+                               
+                                <form th:action="@{/addFoods}" th:object="${foodAdd}" th:method="post">
                     
-                                    <label for="addUsername">Username:</label>
-                                    <input type="text" id="addUsername" name="username"  required><br><br>
+                                    <label for="addUsername">Food Name :</label>
+                                    <input type="text" id="addUsername" name="foodName"  required><br><br>
                     
-                                    <label for="addEmail">Email:</label>
-                                    <input type="email" id="addEmail" name="email"  required><br><br>
-                    
-                                    <label for="addPassword">Password:</label>
-                                    <input type="password" id="addPassword" name="password"  required><br><br>
+                                    <label for="addEmail">State :</label>
+                                    <input type="text" id="addEmail" name="state"  required><br><br>
                     
                                     
                                     <button type="submit" class="add-user-button">Add</button>
@@ -361,9 +360,10 @@
                             <div class="modal-content">
                                     <span class="close">&times;</span>
                                     
-                                   <div class = "popupdelete">  <form th:action="@{/deleteUser}" th:method="post">
-                                      <label for="userId">User ID:</label>
-                                      <input type="text" id="userId" name="userId" required>
+                                   <div class = "popupdelete">  <form th:action="@{/deleteFoods}" th:method="post">
+                                   
+                                      <label for="userId">Food ID :</label>
+                                      <input type="text" id="userId" name="foodId" required>
                                       
                                       <button type="submit" class="delete-user-button" >Delete</button>
                                     </form>
@@ -386,15 +386,15 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Basic Table</h4>
-                                <h6 class="card-subtitle">Add class <code>.table</code></h6>
+                                <h4 class="card-title">Food Items Table</h4>
+                                <h6 class="card-subtitle">Food <code>.table-1</code></h6>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>UserID</th>
-                                                <th>Username</th>
-                                                <th>Email</th>
+                                                <th>Food Id</th>
+                                                <th>Food Name</th>
+                                                <th>State</th>
                                             </tr>
                                         </thead>
 
@@ -402,10 +402,40 @@
                                         
                                         <tbody id="Userinsertion">
                                         
-                                               <tr th:each="user : ${users}">
-                                                    <td th:text="${user.userid}"></td>
-                                                    <td th:text="${user.username}"></td>
-                                                    <td th:text="${user.email}"></td>
+                                               <tr th:each="f : ${foods}">
+                                                    <td th:text="${f.foodId}"></td>
+                                                    <td th:text="${f.foodName}"></td>
+                                                    <td th:text="${f.state}"></td>
+                                                </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Food Mapping Table</h4>
+                                <h6 class="card-subtitle">Food <code>.table-2</code></h6>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Food Mapping Id</th>
+                                                <th>Food Id</th>
+                                                <th>Category Id</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        
+                                        <tbody id="Userinsertion">
+                                        
+                                               <tr th:each="f : ${ftm}">
+                                                    <td th:text="${f.foodTemperatureId}"></td>
+                                                    <td th:text="${f.foodId}"></td>
+                                                    <td th:text="${f.categoryId}"></td>
                                                 </tr>
                                         
                                         </tbody>

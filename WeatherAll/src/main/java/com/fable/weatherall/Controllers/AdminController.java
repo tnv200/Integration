@@ -4,16 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fable.weatherall.ClothEntites.ClothingItem;
 import com.fable.weatherall.ClothEntites.ClothingRecommendation;
 import com.fable.weatherall.ClothEntites.ClothingType;
 import com.fable.weatherall.ClothEntites.WeatherDescription;
+import com.fable.weatherall.DTOs.UserDTO;
 import com.fable.weatherall.FoodEntites.Food;
 import com.fable.weatherall.FoodEntites.FoodTemperatureMap;
 import com.fable.weatherall.OutEntities.Activity;
@@ -30,12 +35,16 @@ import com.fable.weatherall.Repos.ClothRepo.ClothingRecommendationDetailsProject
 import com.fable.weatherall.Repos.OutRepo.ActivityRecommendationDetailsProjection;
 import com.fable.weatherall.Repos.TravelNameRepo;
 import com.fable.weatherall.Repos.TravelRepo;
+import com.fable.weatherall.Repos.TravelRepo.TravelRecommendationDetailsProjection;
 import com.fable.weatherall.Services.AdminService;
+import com.fable.weatherall.TravelEntities.RecommendationLevelTravel;
 import com.fable.weatherall.TravelEntities.TravelNames;
+import com.fable.weatherall.TravelEntities.TravelRecommendation;
+import com.fable.weatherall.TravelEntities.WeatherDescriptionTravel;
 
 import jakarta.transaction.Transactional;
 
-@RestController
+@Controller
 public class AdminController {
 	
 	 @Autowired
@@ -64,44 +73,60 @@ public class AdminController {
      @Autowired
      private TravelNameRepo trnmrepo;
      
+     @Autowired
+     private TravelRepo travelrepo;
+     
 
 	 @GetMapping("/getAllfood")
-	 public List<Food> allFoods(){
+	 public String allFoods(Model model){
    	 
-   	 List<Food> food=foodrepo.findAll();
+   	 List<Food> foods=foodrepo.findAll();
    	 
-   	 return food;
+   	 List<FoodTemperatureMap> ftm=ftmrepo.findAll();
+   	 
+   	 model.addAttribute("ftm", ftm);
+
+   	 model.addAttribute("foods", foods);
+   	 
+   	 return "foodtable";
    	 
     }
 	 
-	 @PostMapping("/addFoods/{foodname}/{state}")
-	 public void addFoods( @PathVariable("foodname") String foodname, @PathVariable("state") String state) 
+	 @PostMapping("/addFoods")
+	 public String addFoods(@ModelAttribute("foodAdd") Food food ) 
 	 
 	 {
-		 Food food = new Food();
-		 
-		 food.setFoodName(foodname);
-		 food.setState(state);
+//		 Food food = new Food();
+//		 
+//		 food.setFoodName(foodname);
+//		 food.setState(state);
 		 
 		 foodrepo.save(food);
+		 
+		 return "redirect:/getAllfood";
 	 }
 	 
 	 
-	 @PostMapping("/deleteFoods/{foodid}")
-	 public void deleteFoods(  @PathVariable("foodid") Integer foodid) {
+	 @PostMapping("/deleteFoods")
+	 public String deleteFoods(  @RequestParam("foodId") int foodId) {
 		 
-		 adminService.deleteFoodService(foodid);
+		 adminService.deleteFoodService(foodId);
+		 
+		 return "redirect:/getAllfood";
 		 
 	 }
 	 
 	 
-	 @GetMapping("/getAllTempMap")
-	 public List<FoodTemperatureMap> allTempMap(){
-   	 
-		 List<FoodTemperatureMap> ftm=ftmrepo.findAll();
-
-		 return ftm;
-    }
+//	 @GetMapping("/getAllTempMap")
+//	 public String allTempMap(Model model){
+//   	 
+//		 List<FoodTemperatureMap> ftm=ftmrepo.findAll();
+//		 
+//	   	 model.addAttribute("ftm", ftm);
+//
+//
+//		 return "";
+//    }
 	 
 	 
 	 @PostMapping("/addTempMap/{foodid}/{categoryid}")
@@ -311,6 +336,50 @@ public class AdminController {
 		 
 	 }
 	 
+	 @GetMapping("/getTraReco")
+	 public List<TravelRecommendationDetailsProjection> getTraReco(){
+   	 
+		 List<TravelRecommendationDetailsProjection> trs = travelrepo.findAllTravelRecommendationsWithDetailsSortedByRecommendationId();
+
+		 return trs;
+    }
+	 
+	 @PostMapping("/addTraReco/{travel_id}/{level_id}/{wthr_id}")
+	 public void addTraReco ( @PathVariable("travel_id")Integer travel_id,
+			                    @PathVariable("level_id")Integer level_id,
+			                    @PathVariable("wthr_id")Integer wthr_id  )
+	 {
+		 TravelRecommendation tr = new TravelRecommendation();
+		 
+		 TravelNames tn = new TravelNames();
+		 
+		 RecommendationLevelTravel lvl = new RecommendationLevelTravel();
+		 
+		 WeatherDescriptionTravel wd = new WeatherDescriptionTravel();
+		 
+		 tn.setTravelid(travel_id);
+		 
+		 lvl.setRecommendationLevelId(level_id);
+		 
+		 wd.setWeatherDescriptionId(wthr_id);
+		 
+		 tr.setTravelnames(tn);
+		 
+		 tr.setRecommendationLevel(lvl);
+
+		 tr.setWeatherDescription(wd);
+
+		 
+		 travelrepo.save(tr);
+		 
+	 }
+	 
+	 @PostMapping("/delTraReco/{trareid}")
+	 public void delTraReco(  @PathVariable("trareid") Integer trareid ) {
+		 
+		 adminService.delTraReco(trareid);
+		 
+	 }
 //	 @PostMapping("/getf/{foodid}")
 //	 public List<FoodTemperatureMap> getf(@PathVariable("foodid") Integer foodid){
 //		 

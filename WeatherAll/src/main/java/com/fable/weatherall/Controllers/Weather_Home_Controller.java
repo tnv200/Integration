@@ -305,13 +305,14 @@ public class Weather_Home_Controller {
 		    	return "userprofile";
 		    }
 	      
+	      
 	      //changes made by shweta 
-	      @GetMapping("/Foodtable")
-		    public String adminprofilefood() {
-			  
-//		    	System.out.println("Hi");
-		    	return "foodtable";
-		    }
+//	      @GetMapping("/Foodtable")
+//		    public String adminprofilefood() {
+//			  
+////		    	System.out.println("Hi");
+//		    	return "foodtable";
+//		    }
 	      
 	      @GetMapping("/Clothtable")
 		    public String adminprofilecloth() {
@@ -334,6 +335,16 @@ public class Weather_Home_Controller {
 //		    	System.out.println("Hi");
 		    	return "traveltable";
 		    }
+	      
+//	      @GetMapping("/getAllFoodItems")
+//	      public String getAllFoodItems(Model model) {
+//	    	  
+//	          List<User> users = userRepo.findAll();
+//	          model.addAttribute("users", users);
+////	          System.out.println("Table");
+//	          
+//	          return "table-basic"; 
+//	      }
 	      
 	      
 	     

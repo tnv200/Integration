@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.fable.weatherall.OutEntities.ActivityRecommendation;
-import com.fable.weatherall.Repos.ClothRepo.ClothingRecommendationDetailsProjection;
 
 
 
@@ -22,10 +21,10 @@ public interface OutRepo extends JpaRepository<ActivityRecommendation, Integer> 
 
     public interface ActivityRecommendationDetailsProjection {
 		
-	    Integer getRecommendationid();
-        String getWeather_Description();
-        String getActivityname();
-        String getLevel();
+	    Integer getRecommendation_Id();
+        String getDescription_Id();
+        String getActivity_Id();
+        String getLevel_Id();
     }
 	
     @Query("SELECT a.Activityname as activityname, rlo.level as level " +
@@ -37,7 +36,7 @@ public interface OutRepo extends JpaRepository<ActivityRecommendation, Integer> 
     List<ActivityRecommendationProjection> findByWeatherDescriptionDescription(@Param("description") String description);
 
     
-    @Query("SELECT ar.activityRecommendationid AS recommendationid, wd.description AS weather_Description, a.Activityname AS activityname, rlo.level AS level " +
+    @Query("SELECT ar.activityRecommendationid AS recommendation_Id, wd.weatherDescriptionId AS description_Id, a.activityid AS activity_Id, rlo.recommendationLevelId AS level_Id " +
 	           "FROM ActivityRecommendation ar " +
 	           "JOIN ar.weatherDescription wd " +
 	           "JOIN ar.recommendationLevel rlo " +
@@ -49,7 +48,7 @@ public interface OutRepo extends JpaRepository<ActivityRecommendation, Integer> 
     	
         List<ActivityRecommendationDetailsProjection> results = findAllActivityRecommendationsWithDetails();
         
-        results.sort(Comparator.comparing(ActivityRecommendationDetailsProjection::getRecommendationid));
+        results.sort(Comparator.comparing(ActivityRecommendationDetailsProjection::getRecommendation_Id));
         return results;
     }
 	  

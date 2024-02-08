@@ -32,6 +32,7 @@ import com.fable.weatherall.Repos.FoodTempMapRepo;
 import com.fable.weatherall.Repos.OutActivityRepo;
 import com.fable.weatherall.Repos.OutRepo;
 import com.fable.weatherall.Repos.TravelNameRepo;
+import com.fable.weatherall.Repos.TravelRepo;
 import com.fable.weatherall.Repos.UserRepo;
 import com.fable.weatherall.Responses.LoginResponse;
 import com.fable.weatherall.Responses.UserAddResponse;
@@ -70,6 +71,9 @@ public class AdminService {
     
     @Autowired
     private TravelNameRepo trnmrepo;
+    
+    @Autowired
+    private TravelRepo travelrepo;
     
 //    @Autowired
 //    private PasswordEncoder passwordEncoder;
@@ -143,6 +147,13 @@ public class AdminService {
 
     	trnmrepo.deleteByTravelid(traid);
     	
+    }
+    
+
+    @Transactional
+    public void delTraReco(Integer outreid) {
+    	
+    	travelrepo.deleteByTravelRecommendationid(outreid);
     }
     
     public Map<String, String> getApiKeyUrl()
