@@ -185,6 +185,15 @@
     cursor: pointer; /* Add cursor style to indicate it's clickable */
 }
 
+span.close1 {
+    display: block; /* Set the display property to block */
+    margin-top: 1px; /* Adjust the top margin for spacing */
+    cursor: pointer; /* Add cursor style to indicate it's clickable */
+    font-size: 20px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the font bold */
+    color: black; 
+}
+
 
         </style>
 </head>
@@ -290,7 +299,7 @@
                                     class="fa fa-table"></i><span class="hide-menu">Food Databases</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Clothtable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getClothItems" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Cloth Table</span></a>
                         </li>
                         
@@ -337,7 +346,7 @@
                         </ol>
                     </div>
                    <div class="text-center mt-4">
-                        <button class="btn btn-success" id="addUserButton1" onclick="openModal('addUserModal')">Add Record</button>
+                        <button class="btn btn-success" id="addUserButton" >Add Record</button>
                     
                      
                         <div id="addUserModal" class="modal">
@@ -357,7 +366,7 @@
                                     <label for="addEmail">State :</label>
                                     <input type="text" id="addEmail" name="state"  required>
                                     
-                                    <button type="submit" class="add-user-button">Add</button>
+                                    <button type="submit" class="add-user-button1">Add</button>
                                     
                                     </form>
                                     
@@ -368,7 +377,7 @@
                         </div>
                     
                         
-                    <button class="btn btn-danger" id="deleteUserButton1" onclick="openModal('deleteUserModal')">Delete Record</button>
+                    <button class="btn btn-danger" id="deleteUserButton" >Delete Record</button>
                        
                         <div id="deleteUserModal" class="modal">
                            
@@ -381,7 +390,7 @@
                                       <label for="userId">Food ID :</label>
                                       <input type="text" id="userId" name="foodId" required>
                                       
-                                       <button type="submit" class="delete-user-button" >Delete</button>
+                                       <button type="submit" class="delete-user-button1" >Delete</button>
 								</form>
 								</div>
                                     
@@ -432,26 +441,26 @@
                         
                         
                         
-                         <div class="text-center mt-4">
-                        <button class="btn btn-success" id="addUserButton">Add Record</button>
+                      <div class="text-center mt-4">
+                        <button class="btn btn-success" id="addUserButton1" onclick="openModal('addUserModal1')">Add Record</button>
                     
                         <!-- The Add User Modal -->
-                        <div id="addUserModal" class="modal">
+                        <div id="addUserModal1" class="modal">
                             <!-- Modal content -->
                              <div class="content">
 
 
                                <div class="popupform">  
                                
-                                <form th:action="@{/addFoods}" th:object="${foodAdd}" th:method="post">
+                                <form th:action="@{/addTempMap}" th:object="${ftempMapAdd}" th:method="post">
 									
-									<span class="close">&times;</span>
+									<span class="close1" onclick="closeModal('addUserModal1')" >&times;</span>
                     
                                     <label for="addUsername">Food ID :</label>
-                                    <input type="text" id="addUsername" name="foodName"  required>
+                                    <input type="text" id="addUsername" name="foodId"  required>
                     
                                     <label for="addEmail">Category Id :</label>
-                                    <input type="text" id="addEmail" name="state"  required>
+                                    <input type="text" id="addEmail" name="categoryId"  required>
                                     
                                     <button type="submit" class="add-user-button">Add</button>
                                     
@@ -464,18 +473,20 @@
                         </div>
                     
                         
-                    <button class="btn btn-danger" id="deleteUserButton">Delete Record</button>
+                    <button class="btn btn-danger" id="deleteUserButton1" onclick="openModal('deleteUserModal1')">Delete Record</button>
                         <!-- The Delete User Modal -->
-                        <div id="deleteUserModal" class="modal">
+                        <div id="deleteUserModal1" class="modal">
                             <!-- Modal content -->
                             <div class="content">
                                     
 
-                                   <div class = "popupdelete">  <form th:action="@{/deleteFoods}" th:method="post">
-                                      <span class="close">&times;</span>
+                                   <div class = "popupdelete">  
+									   
+							   <form th:action="@{/delTempMap}" th:method="post">
+                                      <span class="close1" onclick="closeModal('deleteUserModal1')" >&times;</span>
                                       
                                       <label for="userId">Food Mapping Id :</label>
-                                      <input type="text" id="userId" name="foodId" required>
+                                      <input type="text" id="userId" name="foodTemperatureId" required>
                                       
                                        <button type="submit" class="delete-user-button" >Delete</button>
 								</form>

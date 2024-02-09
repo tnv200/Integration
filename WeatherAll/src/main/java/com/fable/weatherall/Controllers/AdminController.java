@@ -93,7 +93,7 @@ public class AdminController {
     }
 	 
 	 @PostMapping("/addFoods")
-	 public String addFoods(@ModelAttribute("foodAdd") Food food ) 
+	 public String addFoods(@ModelAttribute("foodAdd") Food food) 
 	 
 	 {
 //		 Food food = new Food();
@@ -102,15 +102,17 @@ public class AdminController {
 //		 food.setState(state);
 		 
 		 foodrepo.save(food);
+//		 ftmrepo.save(ftempMapAdd);
 		 
 		 return "redirect:/getAllfood";
 	 }
 	 
 	 
 	 @PostMapping("/deleteFoods")
-	 public String deleteFoods(  @RequestParam("foodId") int foodId) {
+	 public String deleteFoods(  @RequestParam("foodId") int foodId ) {
 		 
 		 adminService.deleteFoodService(foodId);
+		
 		 
 		 return "redirect:/getAllfood";
 		 
@@ -129,20 +131,28 @@ public class AdminController {
 //    }
 	 
 	 
-	 @PostMapping("/addTempMap/{foodid}/{categoryid}")
-	 public void addTempMap ( @PathVariable("foodid")Integer foodid, @PathVariable("categoryid") Integer categoryid)
+//	 @PostMapping("/addTempMap/{foodid}/{categoryid}")
+//	 public void addTempMap ( @PathVariable("foodid")Integer foodid, @PathVariable("categoryid") Integer categoryid)
+//	 {
+//		 FoodTemperatureMap ftm = new FoodTemperatureMap();
+//		 
+//		 ftm.setFoodId(foodid);
+//		 ftm.setCategoryId(categoryid);
+//		 
+//		 ftmrepo.save(ftm);
+//		 
+//	 }
+	 @PostMapping("/addTempMap")
+	 public String addTempMap ( @ModelAttribute("ftempMapAdd") FoodTemperatureMap ftempMapAdd)
 	 {
-		 FoodTemperatureMap ftm = new FoodTemperatureMap();
+		 ftmrepo.save(ftempMapAdd);
 		 
-		 ftm.setFoodId(foodid);
-		 ftm.setCategoryId(categoryid);
-		 
-		 ftmrepo.save(ftm);
+		 return "redirect:/getAllfood";
 		 
 	 }
 	 
-	 @PostMapping("/delTempMap/{ftmid}")
-	 public void delTempMap(  @PathVariable("ftmid") Integer ftmid ) {
+	 @PostMapping("/delTempMap")
+	 public String delTempMap(  @RequestParam("foodTemperatureId") int foodTemperatureId ) {
 
 		 
 //		 FoodTemperatureMap food = new FoodTemperatureMap();
@@ -150,33 +160,39 @@ public class AdminController {
 //		 food.setFoodName(foodname);
 //		 food.setState(state);
 		 
-		 adminService.delTempMap(ftmid);
+		 adminService.delTempMap(foodTemperatureId);
+		 
+		 return "redirect:/getAllfood";
+
 		 
 	 }
 	 
 	 
 	 @GetMapping("/getClothItems")
-	 public List<ClothingItem> allClothItems(){
+	 public String allClothItems(Model model){
    	 
 		 List<ClothingItem> cis = cirepo.findAll();
+		 List<ClothingRecommendationDetailsProjection> crs=clothrepo.findAllClothingRecommendationsWithDetailsSortedByClothingRecommendationId();
+		 
+		 model.addAttribute("cis", cis);
+		 model.addAttribute("crs", crs);
 
-		 return cis;
+		 return "clothtable";
     }
 	 
 	 
-	 @PostMapping("/addClothItem/{itemname}")
-	 public void addClothItems ( @PathVariable("itemname")String itemname)
+	 @PostMapping("/addClothItem")
+	 public String addClothItems ( @ModelAttribute("clothadd") ClothingItem clothadd)
 	 {
-		 ClothingItem ci = new ClothingItem();
 		 
-		 ci.setItemName(itemname);
+		 cirepo.save(clothadd);
 		 
-		 cirepo.save(ci);
+		 return "redirect:/getClothItems";
 		 
 	 }
 	 
-	 @PostMapping("/delClothItem/{clothid}")
-	 public void delClothItem(  @PathVariable("clothid") Integer clothid ) {
+	 @PostMapping("/delClothItem")
+	 public String delClothItem(   @RequestParam("clothingItemId") int clothingItemId) {
 
 		 
 //		 FoodTemperatureMap food = new FoodTemperatureMap();
@@ -184,25 +200,71 @@ public class AdminController {
 //		 food.setFoodName(foodname);
 //		 food.setState(state);
 		 
-		 adminService.delClothItem(clothid);
+		 adminService.delClothItem(clothingItemId);
+		 
+		 return "redirect:/getClothItems";
 		 
 	 }
 	
 	
-	 @GetMapping("/getClothReco")
-	 public List<ClothingRecommendationDetailsProjection> allClothReco(){
-   	 
-		 List<ClothingRecommendationDetailsProjection> crs=clothrepo.findAllClothingRecommendationsWithDetailsSortedByClothingRecommendationId();
-
-		 return crs;
-    }
-	 
+//	 @GetMapping("/getClothReco")
+//	 public String allClothReco(Model model){
+//   	 
+//		
+//
+//		
+//		 return "clothtable";
+//    }
+//	 
 	
-	 @PostMapping("/addClothReco/{clothitem_id}/{clothtype_id}/{wthr_id}")
-	 public void addClothReco ( @PathVariable("clothitem_id")Integer clothitem_id,
-			                    @PathVariable("clothtype_id")Integer clothtype_id,
-			                    @PathVariable("wthr_id")Integer wthr_id  )
+//	 @PostMapping("/addClothReco")
+//	 public String addClothReco ( @ModelAttribute("clothRecoadd") ClothRecoDTO clothRecoadd )
+//	 
+//	 {
+//		 
+//		 Integer clothitem_id = Integer.valueOf(clothRecoadd.getClothingItemId());
+//		 Integer clothtype_id = Integer.valueOf(clothRecoadd.getClothingTypeId());
+//		 Integer wthr_id = Integer.valueOf(clothRecoadd.getWeatherDescriptionId());
+//		 
+//		 
+//		 ClothingRecommendation cr = new ClothingRecommendation();
+//		 
+//		 ClothingItem ci = new ClothingItem();
+//		 
+//		 ClothingType ct = new ClothingType();
+//		 
+//		 WeatherDescription wd = new WeatherDescription();
+//		 
+//		 ci.setClothingItemId(clothitem_id);
+//		 
+//		 ct.setClothingTypeId(clothtype_id);
+//		 
+//		 wd.setWeatherDescriptionId(wthr_id);
+//		 
+//		 cr.setClothingItemId(ci);
+//		 
+//		 cr.setClothingTypeId(ct);
+//
+//		 cr.setWeatherDescriptionId(wd);
+//
+//		 
+//		 clothrepo.save(cr);
+//		 
+//		 return "redirect:/getClothItems";
+//	 
+//	 }
+	 
+	 @PostMapping("/addClothReco")
+	 public String addClothReco ( @RequestParam("clothingItemId")int clothingItemId,
+			                      @RequestParam("clothingTypeId")int clothingTypeId,
+			                      @RequestParam("weatherDescriptionId")int weatherDescriptionId   )
 	 {
+		 
+		 Integer clothitem_id = Integer.valueOf(clothingItemId);
+		 Integer clothtype_id = Integer.valueOf(clothingTypeId);
+		 Integer wthr_id = Integer.valueOf(weatherDescriptionId);
+		 
+		 
 		 ClothingRecommendation cr = new ClothingRecommendation();
 		 
 		 ClothingItem ci = new ClothingItem();
@@ -226,15 +288,22 @@ public class AdminController {
 		 
 		 clothrepo.save(cr);
 		 
+		 return "redirect:/getClothItems";
+		 
 	 }
 	 
 	 
-	 @PostMapping("/delClothReco/{cloreid}")
-	 public void delClothReco(  @PathVariable("cloreid") Integer cloreid ) {
+	 @PostMapping("/delClothReco")
+	 public String delClothReco(  @RequestParam("clothingRecoId") int clothingRecoId) {
 		 
-		 adminService.delClothReco(cloreid);
+		 adminService.delClothReco(clothingRecoId);
 		 
+		 return "redirect:/getClothItems";
 	 }
+	 
+	 
+	 
+	 //After adding record in recommendations map table and main table first should delete id from map table 
 	 
 	 @GetMapping("/getOutActs")
 	 public List<Activity> allOutActs(){
@@ -273,7 +342,7 @@ public class AdminController {
     }
 	 
 	 @PostMapping("/addOutReco/{activity_id}/{level_id}/{wthr_id}")
-	 public void addOutReco ( @PathVariable("activity_id")Integer activity_id,
+	 public void addOutReco (   @PathVariable("activity_id")Integer activity_id,
 			                    @PathVariable("level_id")Integer level_id,
 			                    @PathVariable("wthr_id")Integer wthr_id  )
 	 {
