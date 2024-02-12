@@ -136,6 +136,15 @@ public class Weather_Home_Controller {
 	            
 	        return "redirect:/api/view"; // Redirect to a different page after successful user addition
 	    }
+	    
+
+	    @PostMapping("/update_admin")
+	    public String updateAdminprofile(@ModelAttribute("update") User update) {
+	            
+            adminService.update_Admin(update);
+	            
+	        return "redirect:/view_adminprofile"; // Redirect to a different page after successful user addition
+	    }
 
 	
 //	    @PostMapping("/update_api")

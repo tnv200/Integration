@@ -2,6 +2,7 @@ package com.fable.weatherall.Controllers;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -193,67 +194,13 @@ public class AdminController {
 	 
 	 @PostMapping("/delClothItem")
 	 public String delClothItem(   @RequestParam("clothingItemId") int clothingItemId) {
-
-		 
-//		 FoodTemperatureMap food = new FoodTemperatureMap();
-//		 
-//		 food.setFoodName(foodname);
-//		 food.setState(state);
 		 
 		 adminService.delClothItem(clothingItemId);
 		 
 		 return "redirect:/getClothItems";
 		 
 	 }
-	
-	
-//	 @GetMapping("/getClothReco")
-//	 public String allClothReco(Model model){
-//   	 
-//		
-//
-//		
-//		 return "clothtable";
-//    }
-//	 
-	
-//	 @PostMapping("/addClothReco")
-//	 public String addClothReco ( @ModelAttribute("clothRecoadd") ClothRecoDTO clothRecoadd )
-//	 
-//	 {
-//		 
-//		 Integer clothitem_id = Integer.valueOf(clothRecoadd.getClothingItemId());
-//		 Integer clothtype_id = Integer.valueOf(clothRecoadd.getClothingTypeId());
-//		 Integer wthr_id = Integer.valueOf(clothRecoadd.getWeatherDescriptionId());
-//		 
-//		 
-//		 ClothingRecommendation cr = new ClothingRecommendation();
-//		 
-//		 ClothingItem ci = new ClothingItem();
-//		 
-//		 ClothingType ct = new ClothingType();
-//		 
-//		 WeatherDescription wd = new WeatherDescription();
-//		 
-//		 ci.setClothingItemId(clothitem_id);
-//		 
-//		 ct.setClothingTypeId(clothtype_id);
-//		 
-//		 wd.setWeatherDescriptionId(wthr_id);
-//		 
-//		 cr.setClothingItemId(ci);
-//		 
-//		 cr.setClothingTypeId(ct);
-//
-//		 cr.setWeatherDescriptionId(wd);
-//
-//		 
-//		 clothrepo.save(cr);
-//		 
-//		 return "redirect:/getClothItems";
-//	 
-//	 }
-	 
+
 	 @PostMapping("/addClothReco")
 	 public String addClothReco ( @RequestParam("clothingItemId")int clothingItemId,
 			                      @RequestParam("clothingTypeId")int clothingTypeId,
@@ -306,46 +253,55 @@ public class AdminController {
 	 //After adding record in recommendations map table and main table first should delete id from map table 
 	 
 	 @GetMapping("/getOutActs")
-	 public List<Activity> allOutActs(){
+	 public String allOutActs(Model model){
    	 
 		 List<Activity> acts = outactrepo.findAll();
-
-		 return acts;
+		 List<ActivityRecommendationDetailsProjection> ors = outrepo.findAllActivityRecommendationsWithDetailsSortedByRecommendationId();
+		 
+		 model.addAttribute("acts", acts);
+		 model.addAttribute("ors", ors);
+		 
+		 return "activetable";
      }
 	 
-	 @PostMapping("/addOutActs/{actname}")
-	 public void addOutActs ( @PathVariable("actname")String actname)
+	 @PostMapping("/addOutActs")
+	 public String addOutActs ( @ModelAttribute("actname")Activity actname)
 	 {
-		 Activity a = new Activity();
 		 
-		 a.setActivityname(actname);
 		 
-		 outactrepo.save(a);
+		 outactrepo.save(actname);
+		 return "redirect:/getOutActs";
 		 
 	 }
 	 
-	 @PostMapping("/delOutActs/{actid}")
-	 public void delOutActs(  @PathVariable("actid") Integer actid ) {
+	 @PostMapping("/delOutActs")
+	 public String delOutActs(  @RequestParam("activityid") int activityid ) {
 
 		 
-		 adminService.delOutActs(actid);
-		 
+		 adminService.delOutActs(activityid);
+		 return "redirect:/getOutActs";
 	 }
 	 
 	 
-	 @GetMapping("/getOutReco")
-	 public List<ActivityRecommendationDetailsProjection> allOutReco(){
-   	 
-		 List<ActivityRecommendationDetailsProjection> ors = outrepo.findAllActivityRecommendationsWithDetailsSortedByRecommendationId();
-
-		 return ors;
-    }
+		
+//		 @GetMapping("/getOutReco") public
+//		 List<ActivityRecommendationDetailsProjection> allOutReco(){
+//		 
+//		  List<ActivityRecommendationDetailsProjection> ors = outrepo.findAllActivityRecommendationsWithDetailsSortedByRecommendationId();
+//		  
+//		  return ors; 
+//		  }
+		 
 	 
-	 @PostMapping("/addOutReco/{activity_id}/{level_id}/{wthr_id}")
-	 public void addOutReco (   @PathVariable("activity_id")Integer activity_id,
-			                    @PathVariable("level_id")Integer level_id,
-			                    @PathVariable("wthr_id")Integer wthr_id  )
+	 @PostMapping("/addOutReco")
+	 public String addOutReco (   @RequestParam("activityid")int activityid,
+			                    @RequestParam("recommendationLevelId")int recommendationLevelId,
+			                    @RequestParam("weatherDescriptionId")int weatherDescriptionId  )
 	 {
+		 Integer activity_id = Integer.valueOf(activityid);
+		 Integer level_id = Integer.valueOf(recommendationLevelId);
+		 Integer wthr_id = Integer.valueOf(weatherDescriptionId);
+		 
 		 ActivityRecommendation ar = new ActivityRecommendation();
 		 
 		 Activity ac = new Activity();
@@ -368,56 +324,69 @@ public class AdminController {
 
 		 
 		 outrepo.save(ar);
+		 return "redirect:/getOutActs";
 		 
 	 }
 	 
-	 @PostMapping("/delOutReco/{outreid}")
-	 public void delOutReco(  @PathVariable("outreid") Integer outreid ) {
+	 @PostMapping("/delOutReco")
+	 public String delOutReco(  @RequestParam("outreid") int outreid ) {
 		 
 		 adminService.delOutReco(outreid);
+		 return "redirect:/getOutActs";
 		 
 	 }
 	 
 	 @GetMapping("/getTrNms")
-	 public List<TravelNames> allgetTrNms(){
+	 public String  allgetTrNms(Model model){
    	 
 		 List<TravelNames> trnms = trnmrepo.findAll();
+		 List<TravelRecommendationDetailsProjection> trs = travelrepo.findAllTravelRecommendationsWithDetailsSortedByRecommendationId();
 
-		 return trnms;
+		 model.addAttribute("trnms", trnms);
+		 model.addAttribute("trs", trs);
+
+		 return "traveltable";
      }
 	 
-	 @PostMapping("/addTrNms/{traname}")
-	 public void addTrNms ( @PathVariable("traname")String traname)
+	 @PostMapping("/addTrNms")
+	 public String addTrNms ( @ModelAttribute("traname")TravelNames trnms)
 	 {
-		 TravelNames trnms = new TravelNames();
-		 
-		 trnms.setTravelname(traname);
 		 
 		 trnmrepo.save(trnms);
 		 
-	 }
-	 
-	 @PostMapping("/delTrNms/{traid}")
-	 public void delTrNms(  @PathVariable("traid") Integer traid ) {
-
-		 
-		 adminService.delTrNms(traid);
+		 return "redirect:/getTrNms";
 		 
 	 }
 	 
-	 @GetMapping("/getTraReco")
-	 public List<TravelRecommendationDetailsProjection> getTraReco(){
-   	 
-		 List<TravelRecommendationDetailsProjection> trs = travelrepo.findAllTravelRecommendationsWithDetailsSortedByRecommendationId();
+	 @PostMapping("/delTrNms")
+	 public String delTrNms(@RequestParam("travelid") int travelid ) {
 
-		 return trs;
-    }
+		 
+		 adminService.delTrNms(travelid);
+		 return "redirect:/getTrNms";
+		 
+	 }
 	 
-	 @PostMapping("/addTraReco/{travel_id}/{level_id}/{wthr_id}")
-	 public void addTraReco ( @PathVariable("travel_id")Integer travel_id,
-			                    @PathVariable("level_id")Integer level_id,
-			                    @PathVariable("wthr_id")Integer wthr_id  )
+//	 @GetMapping("/getTraReco")
+//	 public List<TravelRecommendationDetailsProjection> getTraReco(){
+//   	 
+//		 List<TravelRecommendationDetailsProjection> trs = travelrepo.findAllTravelRecommendationsWithDetailsSortedByRecommendationId();
+//
+//		 return trs;
+//    }
+	 
+	 @PostMapping("/addTraReco")
+	 public String addTraReco ( @RequestParam("travelid")int travelid,
+			                   @RequestParam("recommendationLevelId")int recommendationLevelId,
+			                   @RequestParam("weatherDescriptionId")int weatherDescriptionId  )
 	 {
+		 
+
+		 Integer travel_id = Integer.valueOf(travelid);
+		 Integer level_id = Integer.valueOf(recommendationLevelId);
+		 Integer wthr_id = Integer.valueOf(weatherDescriptionId);
+		 
+		 
 		 TravelRecommendation tr = new TravelRecommendation();
 		 
 		 TravelNames tn = new TravelNames();
@@ -441,12 +410,17 @@ public class AdminController {
 		 
 		 travelrepo.save(tr);
 		 
+		 return "redirect:/getTrNms";
+
 	 }
 	 
-	 @PostMapping("/delTraReco/{trareid}")
-	 public void delTraReco(  @PathVariable("trareid") Integer trareid ) {
+	 @PostMapping("/delTraReco")
+	 public String delTraReco(  @RequestParam("outreid") int outreid ) {
 		 
-		 adminService.delTraReco(trareid);
+		 adminService.delTraReco(outreid);
+		 
+		 return "redirect:/getTrNms";
+
 		 
 	 }
 //	 @PostMapping("/getf/{foodid}")

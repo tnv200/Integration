@@ -205,6 +205,8 @@ public class UserService {
         }
         
     }
+    
+    
     public LoginResponse loginAdmin(User user) {
 		User user2 = userRepo.findByEmail(user.getEmail());
         if (user2 != null && user2.getUserType().equals("admin")) {

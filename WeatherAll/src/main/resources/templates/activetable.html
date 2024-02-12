@@ -31,7 +31,7 @@
         <style>
             /* Modal Styles */
 /* /* Modal Styles */
-.modal {
+.modal, .modal1{
   display: none;
   position: fixed;
   z-index: 1;
@@ -41,6 +41,8 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+   justify-content: center;
+   align-items: center;
 }
 
 .modal-content {
@@ -68,7 +70,7 @@
   cursor: pointer;
 }
 
-.delete-user-btn {
+.delete-user-btn,.delete-user-btn1 {
   padding: 10px 20px;
   background-color: #ff0000;
   color: #fff;
@@ -77,26 +79,26 @@
   cursor: pointer;
 }
 
-.delete-user-btn:hover {
+.delete-user-btn:hover,.delete-user-btn1:hover {
   background-color: #cc0000;
 }
 
-.modal-content {
+ .modal-content {
             padding: 0px; /* Adjust this padding as needed */
             background-color: #f5f5f5;
             border-radius: 12px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-.popupform {
-         	display: flex; 
+.popupform ,.popupform1 {
+            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
         
- .popupdelete
+ .popupdelete,.popupdelete1
  {
 	 
             display: flex;
@@ -110,8 +112,7 @@
 
         /* Style the form container */
         form {
-            width: 350px;
-        
+            width: 300px;
             padding: 20px;
             background-color: #f5f5f5;
             border-radius: 8px;
@@ -124,7 +125,7 @@
         /* Style form labels */
         label {
             display: block;
-            margin-bottom: 1px;
+            margin-bottom: 8px;
             font-weight: bold;
         }
 
@@ -140,7 +141,7 @@
 
         /* Style submit button */
         button {
-            width: 20%;
+            width: 14.5%;
             padding: 10px;
             background-color: #4caf50;
             color: white;
@@ -154,7 +155,7 @@
             background-color: #45a049;
         }
         
-        .add-user-button {
+        .add-user-button ,.add-user-button1 {
 			width: 30%;
             margin-top: 10px;
             background-color: rgb(0, 128, 0);
@@ -162,35 +163,35 @@
         }
 
         /* Hover effect for the "Add User" button */
-        .add-user-button:hover {
+        .add-user-button:hover,.add-user-button1:hover {
             background-color: #2980b9;
         }
         
-        .delete-user-button {
+        .delete-user-button, .delete-user-button1 {
 			width: 30%;
             margin-top: 10px;
             background-color: rgb(0, 128, 0);
             color: #fff;
         }
         
-        .popupform {
+        .popupform,.popupform1 {
             /* Your existing styles for the popup form */
             position: relative;
         }
-
-       /* .close {
-            /* Styles for the close icon 
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-        } */
         
-        span.close {
+          span.close {
     display: block; /* Set the display property to block */
     margin-top: 1px; /* Adjust the top margin for spacing */
     cursor: pointer; /* Add cursor style to indicate it's clickable */
+}
+
+span.close1 {
+    display: block; /* Set the display property to block */
+    margin-top: 1px; /* Adjust the top margin for spacing */
+    cursor: pointer; /* Add cursor style to indicate it's clickable */
+    font-size: 20px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the font bold */
+    color: black; 
 }
 
 
@@ -303,25 +304,23 @@
                                     class="fa fa-table"></i><span class="hide-menu">User Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Foodtable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getAllfood" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Food Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Clothtable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getClothItems" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Cloth Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Activetable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getOutActs" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Out_Activity Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Traveltable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getTrNms" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Travel Table</span></a>
                         </li>
                         
-                        <!-- <li> <a class="waves-effect waves-dark" href="icon-fontawesome.html" aria-expanded="false"><i
-                                    class="fa fa-smile-o"></i><span class="hide-menu">Icons</span></a>
-                        </li> -->
+                        
                         <li> <a class="waves-effect waves-dark" href="/api/view" aria-expanded="false"><i
                                     class="fa fa-globe"></i><span class="hide-menu">Open WeatherMap</span></a>
                         </li>
@@ -373,20 +372,16 @@
                                 
                            
                              <div class="popupform">   
-                             <form th:action="@{/u_add}" th:object="${userAdd}" th:method="post">
+                             <form th:action="@{/addOutActs}" th:object="${actname}" th:method="post">
                     
                     				<span class="close">&times;</span> 
                     				
-                                    <label for="addUsername">Username:</label>
-                                    <input type="text" id="addUsername" name="username"  required>
+                                    <label for="addUsername">Activity Name:</label>
+                                    <input type="text" id="addUsername" name="Activityname"  required>
                                     
                                     
                     
-                                    <label for="addEmail">Email:</label>
-                                    <input type="email" id="addEmail" name="email"  required>
-                    
-                                    <label for="addPassword">Password:</label>
-                                    <input type="password" id="addPassword" name="password"  required>
+                                    
                     
                                     
                                     <button type="submit" class="add-user-button">Add</button>
@@ -415,11 +410,11 @@
                              <div class="content">
                                     
                                     
-                                  <div class = "popupdelete">  <form th:action="@{/deleteUser}" th:method="post">
+                                  <div class = "popupdelete">  <form th:action="@{/delOutActs}" th:method="post">
 									  <span class="close">&times;</span>
 									  
-                                      <label for="userId">User ID:</label>
-                                      <input type="text" id="userId" name="userId" required>
+                                      <label for="userId">Activity ID:</label>
+                                      <input type="text" id="userId" name="activityid" required>
                                       
                                       <button type="submit" class="delete-user-button" >Delete</button>
                                     </form>
@@ -447,48 +442,118 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>UserID</th>
-                                                <th>Username</th>
-                                                <th>Email</th>
+                                                <th>Activity Id</th>
+                                                <th>Activity Name</th>
                                             </tr>
                                         </thead>
 
 
-                                        <!-- <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Deshmukh Prohaska</td>
-                                                <td>deshmukh.prohaska@gmail.com</td>
-                                                </tr>
-                                                <tr>
-                                                <td>2</td>
-                                                <td>Deshmukh Gaylord</td>
-                                                <td>deshmukh.gaylord@gmail.com</td>
-                                                </tr>
-                                                <tr>
-                                                <td>3</td>
-                                                <td>Sanghani Gusikowski</td>
-                                                <td>sanghani.gusikowski@gmail.com</td>
-                                                </tr>
-                                                <tr>
-                                                <td>4</td>
-                                                <td>Roshan Rogahn</td>
-                                                <td>roshan.roghahn@gmail.com</td>
-                                                </tr>
-                                                <tr>
-                                                <td>5</td>
-                                                <td>Joshi Hickle</td>
-                                                <td>joshi.hickle@gmail.com</td>
-                                                </tr>
-                                            
-                                        </tbody> -->
+                                       
                                         <tbody id="Userinsertion">
                                         
-                                               <tr th:each="user : ${users}">
-                                                    <td th:text="${user.userid}"></td>
-                                                    <td th:text="${user.username}"></td>
-                                                    <td th:text="${user.email}"></td>
+                                               <tr th:each="a : ${acts}">
+                                                    <td th:text="${a.activityid}"></td>
+                                                    <td th:text="${a.Activityname}"></td>
                                                 </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!----addded 2nd table-->
+                <div class="text-center mt-4">
+                        <button class="btn btn-success" id="addUserButton1" onclick="openModal('addUserModal1')">Add Record</button>
+                    
+                        <!-- The Add User Modal -->
+                        <div id="addUserModal1" class="modal">
+                            <!-- Modal content -->
+                             <div class="content">
+
+
+                               <div class="popupform">  
+                               
+                                <form th:action="@{/addOutReco}" th:object="${clothRecoadd}" th:method="post">
+									
+									<span class="close1" onclick="closeModal('addUserModal1')" >&times;</span>
+                    
+                                    <label for="addUsername">Activity Id :</label>
+                                    <input type="text" id="addUsername" name="activityid"  required>
+                                    
+                                     <label for="addUsername">Recommendation Level Id :</label>
+                                    <input type="text" id="addUsername" name="recommendationLevelId"  required>
+                                    
+                                     <label for="addUsername">Weather Description Id :</label>
+                                    <input type="text" id="addUsername" name="weatherDescriptionId"  required>
+                    
+                          
+                                    <button type="submit" class="add-user-button">Add</button>
+                                    
+                                    </form>
+                                    
+                               </div>
+
+                              </div>
+                              
+                        </div>
+                    
+                        
+                    <button class="btn btn-danger" id="deleteUserButton1" onclick="openModal('deleteUserModal1')">Delete Record</button>
+                        <!-- The Delete User Modal -->
+                        <div id="deleteUserModal1" class="modal">
+                            <!-- Modal content -->
+                            <div class="content">
+                                    
+
+                                   <div class = "popupdelete">  
+									   
+							   <form th:action="@{/delOutReco}" th:method="post">
+                                      <span class="close1" onclick="closeModal('deleteUserModal1')" >&times;</span>
+                                      
+                                      <label for="userId">Activity recommendation Id :</label>
+                                      <input type="text" id="userId" name="outreid" required>
+                                      
+                                       <button type="submit" class="delete-user-button" >Delete</button>
+								</form>
+								</div>
+                                    
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Activity Mapping Table</h4>
+                                <h6 class="card-subtitle">Food <code>.table-2</code></h6>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+												<th>Activity Recommendation Id</th>
+                                                <th>Activity Item Id</th>
+                                                <th>RLevel Id</th>
+                                                <th>Weather Id</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        
+                                        <tbody id="Userinsertion">
+											<tr th:each="a : ${ors}">
+                                                    <td th:text="${a.recommendation_Id}"></td>
+                                                    <td th:text="${a.activity_Id}"></td>
+                                                    <td th:text="${a.level_Id}"></td>
+                                                    <td th:text="${a.description_Id}"></td>
+                                                </tr>
+
                                         
                                         </tbody>
                                     </table>
@@ -547,12 +612,28 @@
     <!-- Your existing HTML content... -->
 
 <script>
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "flex";
+    }
 
-
-    
-
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
 </script>
 
+
+<script>
+    $(document).ready(function () {
+        // Your existing code for updating the dashboard table
+
+        // Function to handle signout and redirect to /home
+        $(".profile-pic").click(function (event) {
+			event.preventDefault();
+            // Redirect to /home
+            window.location.href = '/home';
+        });
+    });
+</script>
 
 
 

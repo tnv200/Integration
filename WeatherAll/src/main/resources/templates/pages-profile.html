@@ -127,32 +127,31 @@
                     <ul id="sidebarnav">
                         <!-- <li> <a class="waves-effect waves-dark" href="/admin_dashboard" aria-expanded="false"><i
                                     class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a> -->
-                        </li>
+                        <!--</li>-->
                         <li> <a class="waves-effect waves-dark" href="/view_adminprofile" aria-expanded="false"><i
                                     class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="/getUsers" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu">User Tables</span></a>
+                                    class="fa fa-table"></i><span class="hide-menu">User Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Foodtable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getAllfood" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Food Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Clothtable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getClothItems" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Cloth Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Activetable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getOutActs" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Out_Activity Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Traveltable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getTrNms" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Travel Table</span></a>
                         </li>
-                        <!-- <li> <a class="waves-effect waves-dark" href="icon-fontawesome.html" aria-expanded="false"><i
-                                    class="fa fa-smile-o"></i><span class="hide-menu">Icons</span></a>
-                        </li> -->
+                        
+                        
                         <li> <a class="waves-effect waves-dark" href="/api/view" aria-expanded="false"><i
                                     class="fa fa-globe"></i><span class="hide-menu">Open WeatherMap</span></a>
                         </li>
@@ -215,7 +214,7 @@
                                 <center class="mt-4"> <img src="/admin_dashboard/assets/images/big/OIP.jpg" class="img-circle"
                                         width="150" />
                                     <h4 class="card-title mt-2" ></h4>
-                                    <h6 class="card-subtitle">Accounts Manager  </h6>
+                                    <h6 class="card-subtitle">Admin  </h6>
                                     <div class="row text-center justify-content-md-center">
                                         <!--<div class="col-4"><a href="javascript:void(0)" class="link"><i
                                                     class="fa fa-user"></i>
@@ -236,12 +235,15 @@
                         <div class="card">
                             <!-- Tab panes -->
                             <div class="card-body">
-                                <form  th:object="${received}" class="form-horizontal form-material mx-2">
+								
+								
+                                <form  th:action="@{/update_admin}" th:object="${update}" class="form-horizontal form-material mx-2">
                                     <div class="form-group">
                                         <label class="col-md-12">Full Name</label>
+                                        
                                         <div class="col-md-12">
 											
-                                            <input type="text" class="form-control" placeholder="enter Name" value="" name="name"
+                                            <input type="text" class="form-control" placeholder="enter Name" value="" name="username"
                                          th:value="${user1 != null and user1.size() > 0 ? user1[0]: ''}" >
                                          
                                         </div>
@@ -262,17 +264,24 @@
                                         
                                         
                                         <input type="text" class="form-control" placeholder="enter email id" value="" name="email"
-                                         th:value="${user != null and user.size() > 0 ? user[0].email : ''}" readonly>
+                                         th:value="${user != null and user.size() > 0 ? user[0].email : ''}" >
                                         
                                     </div>
                                     
+                                
                                     <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success"  type="submit">Update Profile</button>
+                                        </div>
+                                    </div>
+                                    
+                                        <!--<div class="form-group">
                                         <label class="col-md-12">Password</label>
                                         <div class="col-md-12">
                                             <input type="password" value="password"
                                                 class="form-control form-control-line">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <!--<div class="form-group">
                                         <label class="col-md-12">Phone No</label>
                                         <div class="col-md-12">
@@ -286,7 +295,7 @@
                                             <textarea rows="5" class="form-control form-control-line"></textarea>
                                         </div>
                                     </div>-->
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label class="col-sm-12"> Country</label>
                                         <div class="col-sm-12">
                                             <select class="form-control form-control-line">
@@ -297,12 +306,7 @@
                                                 <option>Thailand</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success">Update Profile</button>
-                                        </div>
-                                    </div>
+                                    </div>-->
                                 </form>
                                 
 

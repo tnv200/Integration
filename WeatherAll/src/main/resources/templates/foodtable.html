@@ -28,7 +28,172 @@
 <![endif]-->
 
 
-        <style>
+<!--      <style>
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-user-btn {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-user-btn:hover {
+  background-color: #cc0000;
+}
+
+.modal-content {
+            padding: 0px; /* Adjust this padding as needed */
+            background-color: #f5f5f5;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+.popupform {
+         	display: flex; 
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+ .popupdelete
+ {
+	 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+                                                                                                                                          
+        
+ }
+
+        /* Style the form container */
+        form {
+            width: 350px;
+        
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+             display: flex;
+    		flex-direction:column ;
+    		align-items: center;
+        }
+
+        /* Style form labels */
+        label {
+            display: block;
+            margin-bottom: 1px;
+            font-weight: bold;
+        }
+
+        /* Style form input fields */
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Style submit button */
+        button {
+            width: 20%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Hover effect on submit button */
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .add-user-button {
+			width: 30%;
+            margin-top: 10px;
+            background-color: rgb(0, 128, 0);
+            color: #fff;
+        }
+
+        /* Hover effect for the "Add User" button */
+        .add-user-button:hover {
+            background-color: #2980b9;
+        }
+        
+        .delete-user-button {
+			width: 30%;
+            margin-top: 10px;
+            background-color: rgb(0, 128, 0);
+            color: #fff;
+        }
+        
+        .popupform {
+            /* Your existing styles for the popup form */
+            position: relative;
+        }
+
+       /* .close {
+            /* Styles for the close icon 
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        } */
+        
+        span.close {
+    display: block; /* Set the display property to block */
+    margin-top: 1px; /* Adjust the top margin for spacing */
+    cursor: pointer; /* Add cursor style to indicate it's clickable */
+}
+
+        </style>-->
+        
+          <style>
             /* Modal Styles */
 /* /* Modal Styles */
 .modal, .modal1{
@@ -141,7 +306,7 @@
 
         /* Style submit button */
         button {
-            width: 30%;
+            width: 14.5%;
             padding: 10px;
             background-color: #4caf50;
             color: white;
@@ -288,7 +453,7 @@ span.close1 {
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                        
-                        <li> <a class="waves-effect waves-dark" href="/view_adminprofile" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/view_adminprofile" aria-expanded="false"><i
                                     class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="/getUsers" aria-expanded="false"><i
@@ -296,22 +461,22 @@ span.close1 {
                         </li>
                         
                          <li> <a class="waves-effect waves-dark" href="/getAllfood" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu">Food Databases</span></a>
+                                    class="fa fa-table"></i><span class="hide-menu">Food Table</span></a>
                         </li>
                         
                          <li> <a class="waves-effect waves-dark" href="/getClothItems" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Cloth Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Activetable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getOutActs" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Out_Activity Table</span></a>
                         </li>
                         
-                         <li> <a class="waves-effect waves-dark" href="/Traveltable" aria-expanded="false"><i
+                         <li> <a class="waves-effect waves-dark" href="/getTrNms" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Travel Table</span></a>
                         </li>
                         
-                       
+                        
                         <li> <a class="waves-effect waves-dark" href="/api/view" aria-expanded="false"><i
                                     class="fa fa-globe"></i><span class="hide-menu">Open WeatherMap</span></a>
                         </li>

@@ -420,7 +420,7 @@ document.getElementById("forgotPasswordLink").addEventListener("click", function
                 alert(data.message);
                 if(data.status) {
                     // Redirect to dashboard or another page upon successful login
-                    const dashboardURL = role === 'admin' ? '/admin_dashboard' : '/user_dashboard';
+                    const dashboardURL = role === 'admin' ? '/view_adminprofile' : '/user_dashboard';
                		window.location.href = dashboardURL;
                     
                 }

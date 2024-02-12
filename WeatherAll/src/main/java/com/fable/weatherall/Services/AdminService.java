@@ -50,6 +50,9 @@ public class AdminService {
     @Autowired
     private ApiKeyUrlRepo apikeyurlrepo;
     
+    @Autowired
+    private UserRepo userrepo;
+    
     
     @Autowired
     private FoodRepo foodrepo;
@@ -187,6 +190,17 @@ public class AdminService {
         
 //
 //        return user.getUsername();
+    }
+    
+    public void update_Admin(User user) {
+    	
+    	User user1 = userrepo.findByUserType("admin");
+	
+    	user1.setUsername(user.getUsername());
+    	user1.setEmail(user.getEmail());
+
+    	userrepo.save(user1);
+
     }
     
     
