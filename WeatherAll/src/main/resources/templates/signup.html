@@ -211,8 +211,37 @@
     
         function sendOtp(event) {
         event.preventDefault();
-
+        
+        
         const email = document.getElementById('email').value;
+        var username = document.getElementById('username').value;
+        var password=document.getElementById('password').value;
+        var confirmpassword=document.getElementById('confirmpassword').value;
+        
+         const firstFourCharacters = username.substring(0, 4);
+    const firstFourCharactersRegex = /^[A-Za-z]+$/;
+    if (!firstFourCharactersRegex.test(firstFourCharacters)) {
+        alert("First four characters should be alphabets");
+        return;
+    }
+    
+    if (password !== confirmpassword) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+        alert("Password should be at least 8 characters long and contain at least one special character and one number");
+        return;
+    }
+    
+    if (!username || !email || !password || !confirmpassword) {
+        alert("Please fill in all fields");
+        return;
+    }
+
+        
 
         // Check if the email already exists in the database
         fetch('/checkEmailExists/' + email)

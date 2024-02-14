@@ -662,13 +662,33 @@ https://templatemo.com/tm-590-topic-listing
   margin-bottom: 20px; /* Adjust as needed */
 }
 
+/*style for state drop down */
+#suggestionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px; /* Adjust as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  position: absolute;
+  width: 40%; /* Adjust the width as needed */
+  z-index: 1;
+  top: 100%; /* Position below the input field */
+  left: 55%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+}
 
+#suggestionList li {
+  padding: 8px;
+  cursor: pointer;
+}
 
-
-
-
-
-/*style for clothing cards */
+#suggestionList li:hover {
+  background-color: #f1f1f1;
+}
+        
+ 
 
 </style>
     </head>
@@ -777,8 +797,14 @@ https://templatemo.com/tm-590-topic-listing
                                     </span>
 
                                     <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Enter the Location" aria-label="Search">
-                                    <input name="keyword1" type="search1" class="form-control1" id="keyword1" placeholder="Enter the State" aria-label="Search" style="border: none; outline: none;">
-							        <button type="button" class="form-control" id = "search-button" onclick="showWeatherData()">Search</button>
+                                   <input name="keyword1" type="search1" class="form-control1" id="keyword1" placeholder="Enter the State" aria-label="Search" style="border: none; outline: none;">
+     							   <ul id="suggestionList" class="suggestion-list"></ul>
+     							
+									
+
+
+									
+							        <button type="button" class="form-control" id = "search-button" onclick="checkCityState()">Search</button>
 							        
                                   	
                                 </div>
@@ -1295,6 +1321,8 @@ Recommended <span>Expedition Advice</span> with Limitations
 
         <!-- JAVASCRIPT FILES  -->
         
+       
+        
         <script>
         document.getElementById("user-profile-link").addEventListener("click", function () {
             window.location.href = "/view_userprofile";
@@ -1328,6 +1356,41 @@ Recommended <span>Expedition Advice</span> with Limitations
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
  
+ <script>
+  // Define an array of all states in India
+  const allStates = ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"];
+
+  // Add an event listener to the state input for autocomplete
+  document.getElementById('keyword1').addEventListener('input', function () {
+    const inputText = this.value.toLowerCase();
+    const suggestions = allStates.filter(state => state.toLowerCase().includes(inputText));
+
+    // Display the suggestions in a dropdown or any other UI element
+    displaySuggestions(suggestions);
+  });
+
+  // Function to display autocomplete suggestions
+  function displaySuggestions(suggestions) {
+    const suggestionList = document.getElementById('suggestionList');
+
+    // Clear previous suggestions
+    suggestionList.innerHTML = '';
+
+    // Create and append list items for each suggestion
+    suggestions.forEach(suggestion => {
+      const listItem = document.createElement('li');
+      listItem.textContent = suggestion;
+
+      // Add a click event listener to set the selected suggestion in the input field
+      listItem.addEventListener('click', function () {
+        document.getElementById('keyword1').value = suggestion;
+        suggestionList.innerHTML = ''; // Clear suggestions after selection
+      });
+
+      suggestionList.appendChild(listItem);
+    });
+  }
+</script>
 
 <script >
 function updateSearchBar() {
@@ -1492,15 +1555,51 @@ function handleKeyPress(event) {
     }
 }
  
- 
-
-
-	
-<!-- changes done -->
-	
-	
-	
 
 </script>
+
+<script>
+    function checkCityState() {
+        const cityInput = document.getElementById('keyword').value;
+        const stateInput = document.getElementById('keyword1').value;
+
+        getCityInfo(cityInput)
+            .then(cityState => {
+                if (cityState.toUpperCase() === stateInput.toUpperCase()) {
+                    showWeatherData();
+                } else {
+                    // City is not in the specified state
+                    alert(`The city '${cityInput}' is not in the specified state '${stateInput}'.`);
+                    // For example, display a message on the UI indicating the error
+                }
+            })
+            .catch(error => {
+                // Error in getting city information
+                alert(`Error: ${error.message}`);
+                // You can add more handling for this case if needed
+                // For example, display a message on the UI indicating the error
+            });
+    }
+
+   
+
+    // Mock function for getting city information (replace with your actual implementation)
+    function getCityInfo(city) {
+            const openCageApiKey = '1b4bf3b73b91427b849fd1cbf5456e69'; // Replace with your OpenCage API key
+
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=${openCageApiKey}`;
+
+            return fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        return data.results[0].components.state || '';
+                    } else {
+                        throw new Error('City information not available');
+                    }
+                });
+        }
+</script>
+
     </body>
 </html>

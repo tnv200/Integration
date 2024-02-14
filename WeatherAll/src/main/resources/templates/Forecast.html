@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast</title>
-    
+   
     <style>
         /* Add some basic styling for the weather boxes and container */
-        
+       
       body {
         font-family: 'Arial', sans-serif;
           /*  background-color: #3498db;*/
@@ -18,7 +18,7 @@
             align-items: center;
             height: 100vh;
             padding-top: 60px;
-            
+           
         }
         .forecast-container {
             display: flex;
@@ -33,11 +33,11 @@
         margin: 70px; /* Increase margin for better spacing */
         text-align: center;
         width: 18%; /* Adjust the width as needed */
-        
+       
         border-radius: 10px; /* Add border-radius for rounded corners */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);/* Adjust the width as needed */
         }
-        
+       
          .navbar {
             position: absolute;
             top: 0;
@@ -47,7 +47,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-color: rgba(75, 218, 210, 0.692);
+            /*background-color: rgba(75, 218, 210, 0.692); */
+            background-color: #106ba3bb;
             z-index: 2;
         }
  
@@ -57,7 +58,7 @@
             margin-left: 150px;
         }
  
-        
+       
  
         .logo a {
             text-decoration: none;
@@ -75,10 +76,12 @@
         }
  
         .image-container {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+ 
  
         .image-container img {
             width: 100%;
@@ -87,7 +90,7 @@
         }
         .form {
             position: absolute;
-            top: 30%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1;
@@ -95,16 +98,17 @@
             color: #fff;
         }
         h1 {
-            color: #c6d8e3;
-            margin-bottom: 20px;
+            color: #106ba3bb;
+            margin-bottom: 2px;
+            margin-top: 100px;
         }
-        
+       
         label[for="locationInput"] {
             font-size: 22px; /* Adjust the font size as needed */
             font-family: Arial, sans-serif;
             display: block;
             margin-bottom: 15px;
-            color: #555;
+            color: #106ba3bb;
             font-size: 16px;
             font-weight: bold;
 }
@@ -114,7 +118,7 @@
 button {
     font-size: 16px;
     padding: 10px 20px;
-    background-color: #c5d5e0;
+    color: #67b8eebb;
     color: #1a1b1b;
     border: 1px solid #000;
     border-radius: 5px;
@@ -122,7 +126,7 @@ button {
 }
  
 button{
-  background-color: #527b7c !important;
+  background-color: #67b8eebb  !important;
 }
  
 button:hover {
@@ -137,7 +141,7 @@ button:hover {
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
-        
+       
     }
     .forecast-container {
             margin-top: 20px;
@@ -150,7 +154,7 @@ button:hover {
 .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.3);
     padding: auto;
     width: 18rem;
     margin: 0 10px;
@@ -159,6 +163,8 @@ button:hover {
  
 .card:hover {
     transform: scale(1.05);
+    background-color: #106ba3bb;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
 }
  
 .card-body {
@@ -185,10 +191,10 @@ img {
 }
  
  
-        
+       
  
     </style>
-    
+   
 </head>
 <body>
  
@@ -196,25 +202,25 @@ img {
 <div class="navbar">
     <div class="logo">
         <img src="/Login/Logo.png" alt="Weather Fable Logo" width="40" height="40">
-        
+       
         <a href="/home" >Weather Fable</a>
     </div>
 </div>
- <div class="image-container">
-    <img src="weather.jpg">
-</div> 
-   
+<div class="image-container">
+    <img src="Homepage/images/forecast.png">
+</div>
+ 
     <div class="form">
          <h1>Weather Forecast</h1><br>
-    
+   
     <label for="locationInput">Enter Location:</label>
     <input type="text" id="locationInput" placeholder="Enter location">
     <button onclick="getWeatherForecast()">Get Forecast</button> <br><br><br><br>
  
     <div id="weatherForecast" class="forecast-container"></div>
-    </center>
+ 
 </div>
-    
+   
  
  
  
@@ -223,7 +229,7 @@ img {
    <script>
     async function getWeatherForecast() {
         const locationInput = document.getElementById("locationInput").value;
-        
+       
         if (!locationInput) {
             alert("Please enter a location.");
             return;
@@ -288,6 +294,6 @@ weatherIcon.src = day.day.condition.icon;
 </script>
  
  
-    
+   
 </body>
 </html>
